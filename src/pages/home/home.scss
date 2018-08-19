@@ -1,0 +1,30 @@
+page-home {
+
+}
+ion-content{
+	background-image: url('/assets/imgs/background.png');
+	background-size: cover;
+}
+h3{
+	color: white;
+	margin-top: 15vh !important;
+	text-align: center;
+	text-shadow: .2rem .2rem .1rem rgba(0,0,0,.5);
+	width: 100%
+}
+ion-card-header{
+	text-align: center
+}
+ion-card-content .text-input{
+	margin: 1rem
+}
+ion-card-content button{
+	margin: 1rem auto;
+	text-align: center;
+}
+ion-list h3{
+	color: black;
+	margin-top: 1rem !important;
+	text-align: left;
+	text-shadow: none;
+}

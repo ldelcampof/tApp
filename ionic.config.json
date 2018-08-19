@@ -1,0 +1,8 @@
+{
+  "name": "trilogicApp",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular",
+  "pro_id": "33784596"
+}

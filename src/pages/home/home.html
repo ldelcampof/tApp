@@ -1,0 +1,27 @@
+<ion-header>
+	<ion-navbar>
+		<ion-title>Login</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content padding>
+	<ion-row align-items-center>
+		<h3>Trilogic DM</h3>
+		<ion-card>
+			<ion-card-header align-items-center>
+			    Login de usuario
+			</ion-card-header>
+			<ion-card-content>
+				<ion-list>
+				  	<ion-item>
+					    <ion-input type="text" value="" placeholder="Nombre de usuario"></ion-input>
+				  	</ion-item>
+				  	<ion-item>
+				    	<ion-input type="password" placeholder="Password"></ion-input>
+				  	</ion-item>
+				</ion-list>
+				<button ion-button full color="danger" (click)="openPage()">Iniciar sesión</button>
+			</ion-card-content>
+		</ion-card>
+	</ion-row>
+</ion-content>
