@@ -7,11 +7,10 @@ import { EquiposPage } from '../equipos/equipos'
   templateUrl: 'main.html',
 })
 export class MainPage {
+
+	equipos:any = EquiposPage;
+
 	constructor(public navCtrl: NavController, public navParams: NavParams) {
 	}
-
-  	openPage() {
-		this.navCtrl.push(EquiposPage)
-  	}
 
 }

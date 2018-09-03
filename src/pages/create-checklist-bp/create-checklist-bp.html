@@ -1,0 +1,373 @@
+<!--
+  Generated template for the CreateChecklistPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Crear Checklist BP</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+	<form (ngSubmit)="sendData()">
+		<ion-list>
+			<ion-item>
+				<ion-label stacked>Horómetro inicial</ion-label>
+				<ion-input type="number" [(ngModel)]="mantenimiento.horometroInicial" name="ultimoHorometro"></ion-input>
+			</ion-item>
+
+			<ion-item>
+				<ion-label stacked>Kilometraje inicial</ion-label>
+				<ion-input type="number" [(ngModel)]="mantenimiento.kilometrajeInicial" name="kilometrajeInicial"></ion-input>
+			</ion-item>
+
+
+			<ion-list radio-group [(ngModel)]="mantenimiento.controlTeleMando" name="mantenimiento.controlTeleMando">
+				<ion-label>Control tele mando</ion-label>
+				<ion-item>
+					<ion-label>Conforme</ion-label>
+					<ion-radio value="CONFORME" checked="true"></ion-radio>
+				</ion-item>
+				<ion-item>
+					<ion-label>Falla</ion-label>
+					<ion-radio value="FALLA"></ion-radio>
+				</ion-item>
+			</ion-list>
+
+			<ion-list radio-group [(ngModel)]="mantenimiento.estadoSegurosEstabilizadores" name="mantenimiento.estadoSegurosEstabilizadores">
+				<ion-label>Estado de seguros de estabilizadores</ion-label>
+				<ion-item>
+					<ion-label>Conforme</ion-label>
+					<ion-radio value="CONFORME" checked="true"></ion-radio>
+				</ion-item>
+
+				<ion-item>
+					<ion-label>Falla</ion-label>
+					<ion-radio value="FALLA"></ion-radio>
+				</ion-item>
+			</ion-list>
+
+			<ion-list radio-group [(ngModel)]="mantenimiento.paroEmergencia" name="mantenimiento.paroEmergencia">
+				<ion-label>Paro de emergencia</ion-label>
+				<ion-item>
+					<ion-label>Conforme</ion-label>
+					<ion-radio value="CONFORME" checked="true"></ion-radio>
+				</ion-item>
+
+				<ion-item>
+					<ion-label>Falla</ion-label>
+					<ion-radio value="FALLA"></ion-radio>
+				</ion-item>
+			</ion-list>
+
+			<ion-list radio-group [(ngModel)]="mantenimiento.iluminacionPluma" name="mantenimiento.iluminacionPluma">
+				<ion-label>Iluminación de pluma y plataforma</ion-label>
+				<ion-item>
+					<ion-label>Conforme</ion-label>
+					<ion-radio value="CONFORME" checked="true"></ion-radio>
+				</ion-item>
+
+				<ion-item>
+					<ion-label>Falla</ion-label>
+					<ion-radio value="FALLA"></ion-radio>
+				</ion-item>
+			</ion-list>
+
+			<ion-list radio-group [(ngModel)]="mantenimiento.estadoAbrazaderas" name="mantenimiento.estadoAbrazaderas">
+				<ion-label>Estado abrazaderas de tubería</ion-label>
+				<ion-item>
+					<ion-label>Conforme</ion-label>
+					<ion-radio value="CONFORME" checked="true"></ion-radio>
+				</ion-item>
+
+				<ion-item>
+					<ion-label>Falla</ion-label>
+					<ion-radio value="FALLA"></ion-radio>
+				</ion-item>
+			</ion-list>
+
+			<ion-list radio-group [(ngModel)]="mantenimiento.nivelEstabilizadores" name="mantenimiento.nivelEstabilizadores">
+				<ion-label>Nivel de estabilizadores</ion-label>
+				<ion-item>
+					<ion-label>Conforme</ion-label>
+					<ion-radio value="CONFORME" checked="true"></ion-radio>
+				</ion-item>
+
+				<ion-item>
+					<ion-label>Falla</ion-label>
+					<ion-radio value="FALLA"></ion-radio>
+				</ion-item>
+			</ion-list>
+
+			<ion-list radio-group [(ngModel)]="mantenimiento.funcionamientoLubricador" name="mantenimiento.funcionamientoLubricador">
+				<ion-label>Funcionamiento de lubricador central</ion-label>
+				<ion-item>
+					<ion-label>Conforme</ion-label>
+					<ion-radio value="CONFORME" checked="true"></ion-radio>
+				</ion-item>
+
+				<ion-item>
+					<ion-label>Falla</ion-label>
+					<ion-radio value="FALLA"></ion-radio>
+				</ion-item>
+			</ion-list>
+
+			<ion-list radio-group [(ngModel)]="mantenimiento.lubricacionElementos" name="mantenimiento.lubricacionElementos">
+				<ion-label>Lubricación de elementos de tolva</ion-label>
+				<ion-item>
+					<ion-label>Conforme</ion-label>
+					<ion-radio value="CONFORME" checked="true"></ion-radio>
+				</ion-item>
+
+				<ion-item>
+					<ion-label>Falla</ion-label>
+					<ion-radio value="FALLA"></ion-radio>
+				</ion-item>
+			</ion-list>
+
+			<ion-list radio-group [(ngModel)]="mantenimiento.limpiezaTolva" name="mantenimiento.limpiezaTolva">
+				<ion-label>Limpieza de tolva y tubería</ion-label>
+				<ion-item>
+					<ion-label>Conforme</ion-label>
+					<ion-radio value="CONFORME" checked="true"></ion-radio>
+				</ion-item>
+
+				<ion-item>
+					<ion-label>Falla</ion-label>
+					<ion-radio value="FALLA"></ion-radio>
+				</ion-item>
+			</ion-list>
+
+			<ion-list radio-group [(ngModel)]="mantenimiento.limpiezaCabina" name="mantenimiento.limpiezaCabina">
+				<ion-label>Limpieza Cabina interior y exterior</ion-label>
+				<ion-item>
+					<ion-label>Conforme</ion-label>
+					<ion-radio value="CONFORME" checked="true"></ion-radio>
+				</ion-item>
+
+				<ion-item>
+					<ion-label>Falla</ion-label>
+					<ion-radio value="FALLA"></ion-radio>
+				</ion-item>
+			</ion-list>
+
+			<ion-list radio-group [(ngModel)]="mantenimiento.engrasado" name="mantenimiento.engrasado">
+				<ion-label>Engrasado</ion-label>
+				<ion-item>
+					<ion-label>Conforme</ion-label>
+					<ion-radio value="CONFORME" checked="true"></ion-radio>
+				</ion-item>
+
+				<ion-item>
+					<ion-label>Falla</ion-label>
+					<ion-radio value="FALLA"></ion-radio>
+				</ion-item>
+			</ion-list>
+
+			<ion-list radio-group [(ngModel)]="mantenimiento.funcionamientoAlarma" name="mantenimiento.funcionamientoAlarma">
+				<ion-label>Funcionamiento de alarma de reversa</ion-label>
+				<ion-item>
+					<ion-label>Conforme</ion-label>
+					<ion-radio value="CONFORME" checked="true"></ion-radio>
+				</ion-item>
+
+				<ion-item>
+					<ion-label>Falla</ion-label>
+					<ion-radio value="FALLA"></ion-radio>
+				</ion-item>
+			</ion-list>
+
+			<ion-list radio-group [(ngModel)]="mantenimiento.funcionamientoFrenos" name="mantenimiento.funcionamientoFrenos">
+				<ion-label>Funcionamiento de frenos</ion-label>
+				<ion-item>
+					<ion-label>Conforme</ion-label>
+					<ion-radio value="CONFORME" checked="true"></ion-radio>
+				</ion-item>
+
+				<ion-item>
+					<ion-label>Falla</ion-label>
+					<ion-radio value="FALLA"></ion-radio>
+				</ion-item>
+			</ion-list>
+
+			<ion-list radio-group [(ngModel)]="mantenimiento.espejosCompletos" name="mantenimiento.espejosCompletos">
+				<ion-label>Espejos completos y sin estrellar</ion-label>
+				<ion-item>
+					<ion-label>Conforme</ion-label>
+					<ion-radio value="CONFORME" checked="true"></ion-radio>
+				</ion-item>
+
+				<ion-item>
+					<ion-label>Falla</ion-label>
+					<ion-radio value="FALLA"></ion-radio>
+				</ion-item>
+			</ion-list>
+
+			<ion-list radio-group [(ngModel)]="mantenimiento.funcionamientoBateria" name="mantenimiento.funcionamientoBateria">
+				<ion-label>Funcionamiento y estado de la bateria</ion-label>
+				<ion-item>
+					<ion-label>Conforme</ion-label>
+					<ion-radio value="CONFORME" checked="true"></ion-radio>
+				</ion-item>
+
+				<ion-item>
+					<ion-label>Falla</ion-label>
+					<ion-radio value="FALLA"></ion-radio>
+				</ion-item>
+			</ion-list>
+
+			<ion-list radio-group [(ngModel)]="mantenimiento.estadoParabrisas" name="mantenimiento.estadoParabrisas">
+				<ion-label>Estado de parabrisas y vidrios</ion-label>
+				<ion-item>
+					<ion-label>Conforme</ion-label>
+					<ion-radio value="CONFORME" checked="true"></ion-radio>
+				</ion-item>
+
+				<ion-item>
+					<ion-label>Falla</ion-label>
+					<ion-radio value="FALLA"></ion-radio>
+				</ion-item>
+			</ion-list>
+
+			<ion-list radio-group [(ngModel)]="mantenimiento.nivelAceiteHidraulico" name="mantenimiento.nivelAceiteHidraulico">
+				<ion-label>Nivel aceite hidráulico</ion-label>
+				<ion-item>
+					<ion-label>Conforme</ion-label>
+					<ion-radio value="CONFORME" checked="true"></ion-radio>
+				</ion-item>
+
+				<ion-item>
+					<ion-label>Falla</ion-label>
+					<ion-radio value="FALLA"></ion-radio>
+				</ion-item>
+			</ion-list>
+
+			<ion-list radio-group [(ngModel)]="mantenimiento.nivelAceiteReductor" name="mantenimiento.nivelAceiteReductor">
+				<ion-label>Nivel aceite reductor giro pluma</ion-label>
+				<ion-item>
+					<ion-label>Conforme</ion-label>
+					<ion-radio value="CONFORME" checked="true"></ion-radio>
+				</ion-item>
+
+				<ion-item>
+					<ion-label>Falla</ion-label>
+					<ion-radio value="FALLA"></ion-radio>
+				</ion-item>
+			</ion-list>
+
+			<ion-list radio-group [(ngModel)]="mantenimiento.nivelAceiteMotor" name="mantenimiento.nivelAceiteMotor">
+				<ion-label>Nivel aceite de motor</ion-label>
+				<ion-item>
+					<ion-label>Conforme</ion-label>
+					<ion-radio value="CONFORME" checked="true"></ion-radio>
+				</ion-item>
+
+				<ion-item>
+					<ion-label>Falla</ion-label>
+					<ion-radio value="FALLA"></ion-radio>
+				</ion-item>
+			</ion-list>
+
+			<ion-list radio-group [(ngModel)]="mantenimiento.nivelRefrigerante" name="mantenimiento.nivelRefrigerante">
+				<ion-label>Nivel de refrigerante</ion-label>
+				<ion-item>
+					<ion-label>Conforme</ion-label>
+					<ion-radio value="CONFORME" checked="true"></ion-radio>
+				</ion-item>
+
+				<ion-item>
+					<ion-label>Falla</ion-label>
+					<ion-radio value="FALLA"></ion-radio>
+				</ion-item>
+			</ion-list>
+
+			<ion-list radio-group [(ngModel)]="mantenimiento.condicionLuces" name="mantenimiento.condicionLuces">
+				<ion-label>Condición de luces, cuartos, stop, reversa, torreta y Zepelines</ion-label>
+				<ion-item>
+					<ion-label>Conforme</ion-label>
+					<ion-radio value="CONFORME" checked="true"></ion-radio>
+				</ion-item>
+
+				<ion-item>
+					<ion-label>Falla</ion-label>
+					<ion-radio value="FALLA"></ion-radio>
+				</ion-item>
+			</ion-list>
+
+			<ion-list radio-group [(ngModel)]="mantenimiento.consumoCombustible" name="mantenimiento.consumoCombustible">
+				<ion-label>Consumo de combustible (litros)</ion-label>
+				<ion-item>
+					<ion-label>Conforme</ion-label>
+					<ion-radio value="CONFORME" checked="true"></ion-radio>
+				</ion-item>
+
+				<ion-item>
+					<ion-label>Falla</ion-label>
+					<ion-radio value="FALLA"></ion-radio>
+				</ion-item>
+			</ion-list>
+
+			<ion-list radio-group [(ngModel)]="mantenimiento.consumoAceiteMotor" name="mantenimiento.consumoAceiteMotor">
+				<ion-label>Consumo aceite de motor (litros)</ion-label>
+				<ion-item>
+					<ion-label>Conforme</ion-label>
+					<ion-radio value="CONFORME" checked="true"></ion-radio>
+				</ion-item>
+
+				<ion-item>
+					<ion-label>Falla</ion-label>
+					<ion-radio value="FALLA"></ion-radio>
+				</ion-item>
+			</ion-list>
+
+			<ion-list radio-group [(ngModel)]="mantenimiento.consumoAceiteHidraulico" name="mantenimiento.consumoAceiteHidraulico">
+				<ion-label>Consumo de aceite hidráulico</ion-label>
+				<ion-item>
+					<ion-label>Conforme</ion-label>
+					<ion-radio value="CONFORME" checked="true"></ion-radio>
+				</ion-item>
+
+				<ion-item>
+					<ion-label>Falla</ion-label>
+					<ion-radio value="FALLA"></ion-radio>
+				</ion-item>
+			</ion-list>
+
+			<ion-list radio-group [(ngModel)]="mantenimiento.consumoAceiteTransmision" name="mantenimiento.consumoAceiteTransmision">
+				<ion-label>Consumo aceite de transmisión</ion-label>
+				<ion-item>
+					<ion-label>Conforme</ion-label>
+					<ion-radio value="CONFORME" checked="true"></ion-radio>
+				</ion-item>
+
+				<ion-item>
+					<ion-label>Falla</ion-label>
+					<ion-radio value="FALLA"></ion-radio>
+				</ion-item>
+			</ion-list>
+
+			<ion-list radio-group [(ngModel)]="mantenimiento.consumoRefrigerante" name="mantenimiento.consumoRefrigerante">
+				<ion-label>Consumo de refrigerante</ion-label>
+				<ion-item>
+					<ion-label>Conforme</ion-label>
+					<ion-radio value="CONFORME" checked="true"></ion-radio>
+				</ion-item>
+
+				<ion-item>
+					<ion-label>Falla</ion-label>
+					<ion-radio value="FALLA"></ion-radio>
+				</ion-item>
+			</ion-list>
+		</ion-list>
+
+		<ion-item>
+			<ion-label stacked>Fallas y observaciones</ion-label>
+			<ion-input type="text" [(ngModel)]="mantenimiento.observaciones" name="observaciones"></ion-input>
+		</ion-item>
+		<button ion-button color="danger" type="submit">Guardar</button>
+	</form>
+</ion-content>

@@ -3,6 +3,7 @@ import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
+import { AccionesPage } from '../pages/acciones/acciones';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { EquiposPage } from '../pages/equipos/equipos';
