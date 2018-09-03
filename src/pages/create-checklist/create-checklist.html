@@ -494,11 +494,12 @@
 					<ion-radio value="FALLA"></ion-radio>
 				</ion-item>
 			</ion-list>
-
-			<ion-list>
+		</ion-list>
+		<ion-list>
+			<ion-item>
 				<ion-label stacked>Fallas y observaciones</ion-label>
-				<ion-input type="number" readonly [(ngModel)]="mantenimiento.observaciones" name="ultimoHorometro"></ion-input>
-			</ion-list>
+				<ion-input type="text" [(ngModel)]="mantenimiento.observaciones" name="observaciones"></ion-input>
+			</ion-item>
 		</ion-list>
 		<button ion-button color="danger" type="submit">Guardar</button>
 	</form>

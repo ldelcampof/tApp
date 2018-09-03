@@ -70,18 +70,22 @@ export class CreateChecklistPage {
 		data.append('mantenimiento', JSON.stringify(this.mantenimiento))
 		this.http.post(this._user.url + '/api/apiReporteDiarioOperadorCR/' + this.user.equipo.id, data)
 			.subscribe(response => {
-				this.showAlert()
+				this.showAlert('Registro guardado')
+			},
+			error => {
+				this.showAlert(error.error[0])
 			})
 	}
 
-	showAlert() {
+	showAlert(message) {
 		const alert = this.alertCtrl.create({
-			title: 'Registro guardado',
+			title: message,
 			buttons: [
 				{
 					text: 'Ok',
 					handler: () => {
-						this.navCtrl.pop();
+						if(message == 'Registro guardado')
+							this.navCtrl.pop();
 					}
 				},
 			]
