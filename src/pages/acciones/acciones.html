@@ -12,9 +12,23 @@
 
 
 <ion-content padding>
+	<ion-list padding>
+		<ion-item>
+			<ion-badge>Operador:</ion-badge>
+			<h2>{{ user.nombre }} {{ user.apellidoPaterno }} {{ user.apellidoMaterno }}</h2>
+		</ion-item>
+		<ion-item>
+			<ion-badge>Equipo asignado:</ion-badge>
+			<h2>{{ tipoVehiculo }} - {{ user.equipo.nombreCorto }}</h2>
+		</ion-item>
+		<ion-item>
+			<ion-badge>División:</ion-badge>
+			<h2>{{ user.equipo.asignadoDivision }}</h2>
+		</ion-item>
+	</ion-list>
 	<div *ngIf="user.equipo != null">
-		<button ion-button full color="danger" [navPush]="createChecklistPage" *ngIf="tipoVehiculo == 'CAMIÓN REVOLVEDOR'">Crear checklist</button>
-		<button ion-button full color="danger" [navPush]="createChecklistBPPage" *ngIf="tipoVehiculo == 'BOMBA PLUMA'">Crear checklist</button>
+		<button ion-button full color="danger" [navPush]="createChecklistPage" *ngIf="tipoVehiculo == 'Camión Revolvedor'">Crear checklist</button>
+		<button ion-button full color="danger" [navPush]="createChecklistBPPage" *ngIf="tipoVehiculo == 'Bomba Pluma'">Crear checklist</button>
 		<button ion-button full color="danger" [navPush]="viewChecklistPage" full>Ver checklist</button>
 	</div>
 	<div *ngIf="user.equipo == null">

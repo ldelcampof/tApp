@@ -10,6 +10,8 @@ import { HttpClient } from '@angular/common/http';
 export class CreateChecklistPage {
 
 	mantenimiento = {}
+	horometro:any = ''
+	kilometraje:any = ''
 	user:any = {}
 
 	constructor(public navCtrl: NavController, public navParams: NavParams,
@@ -17,6 +19,14 @@ export class CreateChecklistPage {
 			private _user: StorageServiceProvider) {
 		this._user.getStorage()
 		this.user = JSON.parse(this._user.session.user)
+
+		this.http.get(this._user.url + '/api/apiequipos/' + this.user.equipo.id)
+			.subscribe(response => {
+				console.log(response)
+				this.horometro = response.HorometrosKilometrajes[0].ultimoHorometro
+				this.kilometraje = response.HorometrosKilometrajes[0].ultimoKilometraje
+			})
+
 		this.mantenimiento = {
 			equipoId: this.user.equipo.id,
 			nivelFinalCombustible: 100,
