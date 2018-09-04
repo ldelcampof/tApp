@@ -31,6 +31,16 @@ export class ViewChecklistPage {
 		this.http.get(this._user.url + '/reportesoperador/equipo/' + this.user.equipo.id)
 			.subscribe(response => {
 				this.checklists = response
+
+				for(let i = 0; this.checklists.length > i; i++){
+					this.checklists[i].createdAt = this.checklists[i].createdAt.replace(/\//g, "")
+					this.checklists[i].createdAt = this.checklists[i].createdAt.replace('Date(', "")
+					this.checklists[i].createdAt = this.checklists[i].createdAt.replace(')', "")
+					this.checklists[i].createdAt = parseInt(this.checklists[i].createdAt.substring(0, 10));
+
+					this.checklists[i].createdAt = Date.parse(this.checklists[i].createdAt)
+				}
+				console.log(this.checklists)
 			})
 	}
 

@@ -10,6 +10,7 @@ import { HttpClient } from '@angular/common/http';
 export class CreateChecklistPage {
 
 	mantenimiento = {}
+	checklist:any = {}
 	horometro:any = ''
 	kilometraje:any = ''
 	user:any = {}
@@ -21,9 +22,10 @@ export class CreateChecklistPage {
 		this.user = JSON.parse(this._user.session.user)
 
 		this.http.get(this._user.url + '/api/apiequipos/' + this.user.equipo.id)
-			.subscribe(function(response: any) {
-				this.horometro = response.HorometrosKilometrajes[0].ultimoHorometro
-				this.kilometraje = response.HorometrosKilometrajes[0].ultimoKilometraje
+			.subscribe(response => {
+				this.checklist = response
+				this.horometro = this.checklist.HorometrosKilometrajes[0].ultimoHorometro
+				this.kilometraje = this.checklist.HorometrosKilometrajes[0].ultimoKilometraje
 			})
 
 		this.mantenimiento = {

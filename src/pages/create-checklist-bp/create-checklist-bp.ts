@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { StorageServiceProvider } from "../../providers/storage-service/storage-service";
 import { HttpClient } from '@angular/common/http';
+import { Checklist} from '../../interfaces/checklist.interface'
 
 @Component({
   selector: 'page-create-checklist-bp',
@@ -9,8 +10,9 @@ import { HttpClient } from '@angular/common/http';
 })
 export class CreateChecklistBpPage {
 	mantenimiento:any = {}
-	horometro:any = {}
-	kilometraje:any = {}
+	checklist:any = {}
+	ultimoHorometro:any = {}
+	ultimoKilometraje:any = {}
 	user:any = {}
 
 	constructor(public navCtrl: NavController, public navParams: NavParams,
@@ -20,46 +22,48 @@ export class CreateChecklistBpPage {
 		this.user = JSON.parse(this._user.session.user)
 
 		this.http.get(this._user.url + '/api/apiequipos/' + this.user.equipo.id)
-			.subscribe(function(response: any){
-				this.horometro = response.HorometrosKilometrajes[0].ultimoHorometro
-				this.kilometraje = response.HorometrosKilometrajes[0].ultimoKilometraje
+			.subscribe(response => {
+				this.checklist = response
+				this.ultimoHorometro = parseInt(this.checklist.HorometrosKilometrajes[0].ultimoHorometro)
+				this.ultimoKilometraje = parseInt(this.checklist.HorometrosKilometrajes[0].ultimoKilometraje)
 			})
 
-		this.mantenimiento = {
-            equipoId: this.user.equipo.id,
-			nivelFinalCombustible: 0,
-			operadorId: this.user.Id,
-			horometroInicial: this.user.equipo.horometro,
-			kilometrajeInicial: this.user.equipo.kilometraje,
-            cargaDiesel: 0,
-            controlTeleMando: "CONFORME",
-            estadoSegurosEstabilizadores: "CONFORME",
-            paroEmergencia: "CONFORME",
-            iluminacionPluma: "CONFORME",
-            estadoAbrazaderas: "CONFORME",
-            nivelEstabilizadores: "CONFORME",
-            funcionamientoLubricador: "CONFORME",
-            lubricacionElementos: "CONFORME",
-            limpiezaTolva: "CONFORME",
-            limpiezaCabina: "CONFORME",
-            engrasado: "CONFORME",
-            funcionamientoAlarma: "CONFORME",
-            funcionamientoFrenos: "CONFORME",
-            espejosCompletos: "CONFORME",
-            funcionamientoBateria: "CONFORME",
-            estadoParabrisas: "CONFORME",
-            nivelAceiteHidraulico: "CONFORME",
-            nivelAceiteReductor: "CONFORME",
-            nivelAceiteMotor: "CONFORME",
-            nivelRefrigerante: "CONFORME",
-            condicionLuces: "CONFORME",
-            consumoCombustible: "CONFORME",
-            consumoAceiteMotor: "CONFORME",
-            consumoAceiteHidraulico: "CONFORME",
-            consumoAceiteTransmision: "CONFORME",
-            consumoRefrigerante: "CONFORME",
-            obervaciones: "",
-        }
+			this.mantenimiento = {
+	            equipoId: this.user.equipo.id,
+				nivelFinalCombustible: 0,
+				operadorId: this.user.Id,
+				horometroInicial: 0,
+				kilometrajeInicial: 0,
+	            cargaDiesel: 0,
+	            controlTeleMando: "CONFORME",
+	            estadoSegurosEstabilizadores: "CONFORME",
+	            paroEmergencia: "CONFORME",
+	            iluminacionPluma: "CONFORME",
+	            estadoAbrazaderas: "CONFORME",
+	            nivelEstabilizadores: "CONFORME",
+	            funcionamientoLubricador: "CONFORME",
+	            lubricacionElementos: "CONFORME",
+	            limpiezaTolva: "CONFORME",
+	            limpiezaCabina: "CONFORME",
+	            engrasado: "CONFORME",
+	            funcionamientoAlarma: "CONFORME",
+	            funcionamientoFrenos: "CONFORME",
+	            espejosCompletos: "CONFORME",
+	            funcionamientoBateria: "CONFORME",
+	            estadoParabrisas: "CONFORME",
+	            nivelAceiteHidraulico: "CONFORME",
+	            nivelAceiteReductor: "CONFORME",
+	            nivelAceiteMotor: "CONFORME",
+	            nivelRefrigerante: "CONFORME",
+	            condicionLuces: "CONFORME",
+	            consumoCombustible: "CONFORME",
+	            consumoAceiteMotor: "CONFORME",
+	            consumoAceiteHidraulico: "CONFORME",
+	            consumoAceiteTransmision: "CONFORME",
+	            consumoRefrigerante: "CONFORME",
+	            obervaciones: "",
+	        }
+
 	}
 
 	sendData(){

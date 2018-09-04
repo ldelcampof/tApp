@@ -18,17 +18,17 @@
 
 			<ion-item>
 				<ion-label stacked>Último Horómetro</ion-label>
-				<ion-input type="number" readonly [(ngModel)]="horometro" name="horometroInicial"></ion-input>
+				<ion-input type="text" readonly [(ngModel)]="ultimoHorometro" [ngModelOptions]="{standalone: true}"></ion-input>
 			</ion-item>
 
 			<ion-item>
 				<ion-label stacked>Horómetro inicial</ion-label>
-				<ion-input type="number" [(ngModel)]="mantenimiento.horometroInicial" name="ultimoHorometro"></ion-input>
+				<ion-input type="number" [(ngModel)]="mantenimiento.horometroInicial" name="horometroInicial"></ion-input>
 			</ion-item>
 
 			<ion-item>
 				<ion-label stacked>Último Kilometraje</ion-label>
-				<ion-input type="number" readonly [(ngModel)]="kilometraje" name="kilometrajeInicial"></ion-input>
+				<ion-input type="text" readonly [(ngModel)]="ultimoKilometraje" [ngModelOptions]="{standalone: true}"></ion-input>
 			</ion-item>
 
 			<ion-item>
