@@ -27,8 +27,8 @@
 		</ion-item>
 	</ion-list>
 	<div *ngIf="user.equipo != null">
-		<button ion-button full color="danger" [navPush]="createChecklistPage" *ngIf="tipoVehiculo == 'Camión Revolvedor'">Crear checklist</button>
-		<button ion-button full color="danger" [navPush]="createChecklistBPPage" *ngIf="tipoVehiculo == 'Bomba Pluma'">Crear checklist</button>
+		<button ion-button full color="danger" [navPush]="createChecklistPage" *ngIf="tipoVehiculo == 'CAMIÓN REVOLVEDOR'">Crear checklist</button>
+		<button ion-button full color="danger" [navPush]="createChecklistBPPage" *ngIf="tipoVehiculo == 'BOMBA PLUMA'">Crear checklist</button>
 		<button ion-button full color="danger" [navPush]="viewChecklistPage" full>Ver checklist</button>
 	</div>
 	<div *ngIf="user.equipo == null">
