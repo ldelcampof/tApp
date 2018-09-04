@@ -4,6 +4,7 @@ import { StorageServiceProvider } from "../../providers/storage-service/storage-
 import { HttpClient } from '@angular/common/http';
 import { DetalleChecklistBpPage } from '../detalle-checklist-bp/detalle-checklist-bp';
 import { DetalleChecklistCrPage } from '../detalle-checklist-cr/detalle-checklist-cr';
+import moment from 'moment'
 
 @Component({
   selector: 'page-view-checklist',
@@ -33,14 +34,14 @@ export class ViewChecklistPage {
 				this.checklists = response
 
 				for(let i = 0; this.checklists.length > i; i++){
-					this.checklists[i].createdAt = this.checklists[i].createdAt.replace(/\//g, "")
-					this.checklists[i].createdAt = this.checklists[i].createdAt.replace('Date(', "")
-					this.checklists[i].createdAt = this.checklists[i].createdAt.replace(')', "")
-					this.checklists[i].createdAt = parseInt(this.checklists[i].createdAt.substring(0, 10));
+					// this.checklists[i].createdAt = this.checklists[i].createdAt.replace(/\//g, "")
+					// this.checklists[i].createdAt = this.checklists[i].createdAt.replace('Date(', "")
+					// this.checklists[i].createdAt = this.checklists[i].createdAt.replace(')', "")
+					// this.checklists[i].createdAt = parseInt(this.checklists[i].createdAt.substring(0, 10));
+					moment.locale('es')
 
-					this.checklists[i].createdAt = Date.parse(this.checklists[i].createdAt)
+					this.checklists[i].createdAt = moment(this.checklists[i].createdAt)
 				}
-				console.log(this.checklists)
 			})
 	}
 
