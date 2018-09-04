@@ -20,8 +20,7 @@ export class CreateChecklistBpPage {
 		this.user = JSON.parse(this._user.session.user)
 
 		this.http.get(this._user.url + '/api/apiequipos/' + this.user.equipo.id)
-			.subscribe(response => {
-				console.log(response)
+			.subscribe(function(response: any){
 				this.horometro = response.HorometrosKilometrajes[0].ultimoHorometro
 				this.kilometraje = response.HorometrosKilometrajes[0].ultimoKilometraje
 			})
