@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { StorageServiceProvider } from "../../providers/storage-service/storage-service";
 import { HttpClient } from '@angular/common/http';
+import { Platform } from 'ionic-angular';
 
 @Component({
   selector: 'page-create-checklist',
@@ -9,7 +10,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class CreateChecklistPage {
 
-	mantenimiento = {}
+	mantenimiento:any = {}
+	session:any = {}
 	checklist:any = {}
 	horometro:any = ''
 	kilometraje:any = ''
@@ -17,9 +19,15 @@ export class CreateChecklistPage {
 
 	constructor(public navCtrl: NavController, public navParams: NavParams,
 			private http: HttpClient, public alertCtrl: AlertController,
-			private _user: StorageServiceProvider) {
+			private _user: StorageServiceProvider, private platform:Platform) {
 		this._user.getStorage()
-		this.user = JSON.parse(this._user.session.user)
+
+		if(this.platform.is('cordova')){
+			this.session = JSON.parse(this._user.session)
+			this.user = JSON.parse(this.session.user)
+		}else{
+			this.user = JSON.parse(this._user.session.user)
+		}
 
 		this.http.get(this._user.url + '/api/apiequipos/' + this.user.equipo.id)
 			.subscribe(response => {

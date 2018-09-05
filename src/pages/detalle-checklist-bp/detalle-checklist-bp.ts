@@ -58,6 +58,7 @@ export class DetalleChecklistBpPage {
 
 	constructor(public navCtrl: NavController, public navParams: NavParams,
 			private http: HttpClient, private _user: StorageServiceProvider) {
+
 		this._user.getStorage()
 		this.checklist = this.navParams.get('checklist');
 		this.http.get( this._user.url + '/api/apiReporteDiarioOperadorBP/' + this.checklist.reporteId)
