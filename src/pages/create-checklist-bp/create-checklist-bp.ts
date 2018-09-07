@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, AlertController } from 'ionic-angular';
+import { NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import { StorageServiceProvider } from "../../providers/storage-service/storage-service";
 import { HttpClient } from '@angular/common/http';
 import { Platform } from 'ionic-angular';
@@ -15,10 +15,13 @@ export class CreateChecklistBpPage {
 	ultimoHorometro:any = {}
 	ultimoKilometraje:any = {}
 	user:any = {}
+	loading:any = this.loadingCtrl.create({ content: 'Cargando...' })
 
 	constructor(public navCtrl: NavController, public navParams: NavParams,
 			private http: HttpClient, public alertCtrl: AlertController,
-			private _user: StorageServiceProvider,private platform:Platform) {
+			private _user: StorageServiceProvider,private platform:Platform,
+			public loadingCtrl: LoadingController) {
+
 		this._user.getStorage()
 
 		if(this.platform.is('cordova')){
@@ -75,13 +78,33 @@ export class CreateChecklistBpPage {
 
 	sendData(){
 		var data = new FormData()
-		data.append('mantenimiento', JSON.stringify(this.mantenimiento))
-		this.http.post(this._user.url + '/api/apiReporteDiarioOperadorBP/' + this.user.equipo.id, data)
-			.subscribe(response => {
-				this.showAlert('Registro guardado')
-			},error => {
-				this.showAlert(error.error[0])
-			})
+		let success = true
+		this.loading = this.loadingCtrl.create({ content: 'Cargando...' })
+
+		this.loading.present();
+
+		if(this.ultimoHorometro >= this.mantenimiento.horometroInicial){
+			this.loading.dismiss();
+			this.showAlert('El horometro no puede ser menor que el anterior')
+			success = false
+		}
+		if(this.ultimoKilometraje >= this.mantenimiento.kilometrajeInicial){
+			this.loading.dismiss();
+			this.showAlert('El kilometraje no puede ser menor que el anterior')
+			success = false
+		}
+
+		if(success){
+			data.append('mantenimiento', JSON.stringify(this.mantenimiento))
+			this.http.post(this._user.url + '/api/apiReporteDiarioOperadorBP/' + this.user.equipo.id, data)
+				.subscribe(response => {
+					this.loading.dismiss();
+					this.showAlert('Registro guardado')
+				},error => {
+					this.loading.dismiss()
+					this.showAlert(error.error[0])
+				})
+		}
 	}
 
 	showAlert(message) {

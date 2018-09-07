@@ -27,9 +27,9 @@
 		</ion-item>
 	</ion-list>
 	<div *ngIf="user.equipo != null">
-		<button ion-button full color="danger" [navPush]="createChecklistPage" *ngIf="tipoVehiculo == 'CAMIÓN REVOLVEDOR'">Crear checklist</button>
-		<button ion-button full color="danger" [navPush]="createChecklistBPPage" *ngIf="tipoVehiculo == 'Bomba Pluma'">Crear checklist</button>
-		<button ion-button full color="danger" [navPush]="viewChecklistPage" full>Ver checklist</button>
+		<button margin-bottom large ion-button full color="danger" [navPush]="createChecklistPage" *ngIf="tipoVehiculo == 'CAMIÓN REVOLVEDOR'">Crear checklist</button>
+		<button large ion-button full color="danger" [navPush]="createChecklistBPPage" *ngIf="tipoVehiculo == 'BOMBA PLUMA'" margin-bottom>Crear checklist</button>
+		<button large ion-button margin-bottom full color="danger" [navPush]="viewChecklistPage">Ver checklist</button>
 	</div>
 	<div *ngIf="user.equipo == null">
 		<ion-card>
@@ -38,6 +38,6 @@
 			</ion-card-content>
 		</ion-card>
 	</div>
-	<button ion-button full (click)="salir()">Salir</button>
+	<button ion-button full (click)="salir()" margin-top small>Salir</button>
 
 </ion-content>

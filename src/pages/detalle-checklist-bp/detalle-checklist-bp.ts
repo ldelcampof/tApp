@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
 import { StorageServiceProvider } from "../../providers/storage-service/storage-service";
 
@@ -9,6 +9,8 @@ import { StorageServiceProvider } from "../../providers/storage-service/storage-
 })
 export class DetalleChecklistBpPage {
 	checklist:any = {}
+	loading:any = this.loadingCtrl.create({ content: 'Cargando...' })
+
 	detail:any = {
 		equipoId: 0,
 		nivelFinalCombustible: 100,
@@ -57,15 +59,37 @@ export class DetalleChecklistBpPage {
 	}
 
 	constructor(public navCtrl: NavController, public navParams: NavParams,
-			private http: HttpClient, private _user: StorageServiceProvider) {
+			private http: HttpClient, private _user: StorageServiceProvider,
+			public loadingCtrl: LoadingController,
+			public alertCtrl: AlertController,) {
 
+		this.loading.present()
 		this._user.getStorage()
 		this.checklist = this.navParams.get('checklist');
 		this.http.get( this._user.url + '/api/apiReporteDiarioOperadorBP/' + this.checklist.reporteId)
 			.subscribe(response => {
 				this.detail = response
-				console.log(this.detail)
+				this.loading.dismiss()
+			}, error => {
+				this.loading.dismiss()
+				this.showAlert(error.error)
 			})
+	}
+
+	showAlert(message) {
+		const alert = this.alertCtrl.create({
+			title: message,
+			buttons: [
+				{
+					text: 'Ok',
+					handler: () => {
+						if(message == 'Registro guardado')
+							this.navCtrl.pop();
+					}
+				},
+			]
+		});
+		alert.present();
 	}
 
 }

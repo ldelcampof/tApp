@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, AlertController } from 'ionic-angular';
+import { NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import { StorageServiceProvider } from "../../providers/storage-service/storage-service";
 import { HttpClient } from '@angular/common/http';
 import { DetalleChecklistBpPage } from '../detalle-checklist-bp/detalle-checklist-bp';
@@ -22,10 +22,13 @@ export class ViewChecklistPage {
 	}
 	detailChecklistBp = DetalleChecklistBpPage
 	detailChecklistCr = DetalleChecklistCrPage
+	loading:any = this.loadingCtrl.create({ content: 'Cargando...' })
 
 	constructor(public navCtrl: NavController, public navParams: NavParams,
 		private http:HttpClient, private _user:StorageServiceProvider,
-		private platform:Platform, public alertCtrl: AlertController) {
+		private platform:Platform, public alertCtrl: AlertController,
+		public loadingCtrl: LoadingController) {
+
 		if(this.platform.is('cordova')){
 			this.session = JSON.parse(this._user.session)
 			this.user = JSON.parse(this.session.user)
@@ -37,13 +40,16 @@ export class ViewChecklistPage {
 	}
 
 	getChecklist(){
+		this.loading.present()
 		this.http.get(this._user.url + '/reportesoperador/equipo/' + this.user.equipo.id)
 			.subscribe(response => {
 				this.checklists = response
 				for(let i = 0; this.checklists.length > i; i++){
 					this.checklists[i].createdAt = moment(this.checklists[i].createdAt)
 				}
+				this.loading.dismiss();
 			}, error => {
+				this.loading.dismiss();
 				this.showAlert(error.error)
 			})
 	}
