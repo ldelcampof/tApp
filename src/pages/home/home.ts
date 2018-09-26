@@ -48,6 +48,7 @@ export class HomePage {
 				this.navCtrl.push(this.accionesPage)
 			}, error => {
 				this.showAlert(error.error)
+				this.loading.dismiss()
 			})
 	}
 

@@ -1,0 +1,54 @@
+<!--
+  Generated template for the CargarCombustiblePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Cargar Combustible</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+	<form (ngSubmit)="sendData()">
+		<ion-list>
+			<ion-item>
+				<ion-label stacked>Nombre corto</ion-label>
+				<ion-label>{{ checklist.nombreCorto }}</ion-label>
+			</ion-item>
+			<ion-item>
+				<ion-label stacked>Último Horómetro</ion-label>
+				<ion-input type="text" readonly [(ngModel)]="ultimoHorometro" [ngModelOptions]="{standalone: true}"></ion-input>
+			</ion-item>
+			<ion-item>
+				<ion-label stacked>Último Kilometraje</ion-label>
+				<ion-input type="text" readonly [(ngModel)]="ultimoKilometraje" [ngModelOptions]="{standalone: true}"></ion-input>
+			</ion-item>
+			<ion-item>
+				<ion-label stacked>Horómetro actual</ion-label>
+				<ion-input type="number" [(ngModel)]="carga.nuevoHorometro" name="nuevoHorometro"></ion-input>
+			</ion-item>
+			<ion-item>
+				<ion-label stacked>Kilometraje actual</ion-label>
+				<ion-input type="number" [(ngModel)]="carga.nuevoKilometraje" name="nuevoKilometraje"></ion-input>
+			</ion-item>
+			<ion-item>
+				<ion-label stacked>Diesel cargado</ion-label>
+				<ion-input type="number" [(ngModel)]="carga.diesel" name="diesel"></ion-input>
+			</ion-item>
+			<ion-item>
+				<ion-label stacked>Fecha de carga</ion-label>
+				<ion-input type="date" [(ngModel)]="carga.fechaCarga" name="fechaCarga"></ion-input>
+			</ion-item>
+			<ion-item>
+				<ion-label stacked>Comentario</ion-label>
+				<ion-input type="text" [(ngModel)]="carga.comentario" name="comentario"></ion-input>
+			</ion-item>
+		</ion-list>
+		<button ion-button full color="danger" type="submit">Guardar</button>
+	</form>
+</ion-content>

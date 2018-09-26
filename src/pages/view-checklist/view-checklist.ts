@@ -45,7 +45,7 @@ export class ViewChecklistPage {
 			.subscribe(response => {
 				this.checklists = response
 				for(let i = 0; this.checklists.length > i; i++){
-					this.checklists[i].createdAt = moment(this.checklists[i].createdAt)
+					this.checklists[i].createdAt = moment(this.checklists[i].createdAt).format('DD/MM/YYYY')
 				}
 				this.loading.dismiss();
 			}, error => {

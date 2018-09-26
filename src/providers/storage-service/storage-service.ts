@@ -10,7 +10,8 @@ import { Platform } from 'ionic-angular';
 */
 @Injectable()
 export class StorageServiceProvider {
-	url = 'http://192.168.1.6/trilogic'
+	// url = 'http://192.168.0.9/trilogic'
+	url = 'http://192.168.0.13/trilogic'
 	session:any = {
 		status: false,
 		user: {

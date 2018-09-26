@@ -102,7 +102,7 @@ export class CreateChecklistBpPage {
 					this.showAlert('Registro guardado')
 				},error => {
 					this.loading.dismiss()
-					this.showAlert(error.error[0])
+					this.showAlert(error.error)
 				})
 		}
 	}

@@ -1,0 +1,26 @@
+<!--
+  Generated template for the VerCargasCombustiblePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Ver Cargas de Combustible</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+	<ion-list>
+		<ion-item *ngFor="let carga of cargas">
+			<h2>{{ carga.fechaCarga }}</h2>
+			<p>Horómetro: {{ carga.nuevoHorometro }}</p>
+			<p>Kilometraje: {{ carga.nuevoKilometraje }}</p>
+			<p>Carga diesel: {{ carga.diesel }}</p>
+			<p>Comentario: {{ carga.comentario }}</p>
+		</ion-item>
+	</ion-list>
+</ion-content>
