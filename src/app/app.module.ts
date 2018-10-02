@@ -13,6 +13,7 @@ import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { MainPage } from '../pages/main/main';
 import { MyApp } from './app.component';
+import { TiposEquiposPage } from "../pages/tipos-equipos/tipos-equipos";
 import { ViewChecklistPage } from '../pages/view-checklist/view-checklist';
 import { VerCargasCombustiblePage } from '../pages/ver-cargas-combustible/ver-cargas-combustible';
 
@@ -38,6 +39,7 @@ import { IonicStorageModule } from '@ionic/storage';
 		ListPage,
 		EquiposPage,
 		MainPage,
+		TiposEquiposPage,
 		ViewChecklistPage,
 		VerCargasCombustiblePage,
 	],
@@ -60,6 +62,7 @@ import { IonicStorageModule } from '@ionic/storage';
 		ListPage,
 		EquiposPage,
 		MainPage,
+		TiposEquiposPage,
 		ViewChecklistPage,
 		VerCargasCombustiblePage,
 	],

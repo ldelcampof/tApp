@@ -3,6 +3,7 @@ import { NavController, AlertController, LoadingController } from 'ionic-angular
 import { MainPage } from '../main/main';
 import { AccionesPage } from '../acciones/acciones';
 import { HttpClient } from '@angular/common/http';
+import { TiposEquiposPage } from "../tipos-equipos/tipos-equipos";
 
 import { StorageServiceProvider } from "../../providers/storage-service/storage-service";
 
@@ -13,6 +14,8 @@ import { StorageServiceProvider } from "../../providers/storage-service/storage-
 export class HomePage {
 
 	accionesPage = AccionesPage
+	TiposEquipos = TiposEquiposPage
+	userSession:any = {}
 	user = {
 		nombreUsuario: '',
 		password: ''
@@ -29,7 +32,13 @@ export class HomePage {
 
 			this._user.getStorage()
 			if(this._user.session.status){
-				this.navCtrl.push(this.accionesPage)
+				this.userSession =  JSON.parse(this._user.session.user);
+
+				if(this.userSession.RolesId == 7){
+					this.navCtrl.push(this.TiposEquipos)
+				}else{
+					this.navCtrl.push(this.accionesPage)
+				}
 			}
 	}
 
@@ -43,9 +52,15 @@ export class HomePage {
 			.subscribe(response => {
 				this.loading.dismiss()
 				this._user.session = response
+				this.userSession =  JSON.parse(this._user.session.user);
 				this._user.session.status = true
 				this._user.set_storage()
-				this.navCtrl.push(this.accionesPage)
+
+				if(this.userSession.RolesId == 1){
+					this.navCtrl.push(this.TiposEquipos)
+				}else{
+					this.navCtrl.push(this.accionesPage)
+				}
 			}, error => {
 				this.showAlert(error.error)
 				this.loading.dismiss()

@@ -12,6 +12,7 @@ import { VerCargasCombustiblePage } from '../ver-cargas-combustible/ver-cargas-c
 export class EquiposPage {
 
 	elements:any = []
+  user:any = {}
   CargarCombustible = CargarCombustiblePage
   VerCargasCombustible = VerCargasCombustiblePage
 
@@ -19,6 +20,9 @@ export class EquiposPage {
     public navParams: NavParams,
     private http: HttpClient,
     private storage: StorageServiceProvider) {
+
+      this.user =  JSON.parse(this.storage.session.user);
+
 
       this.loadEquipos(navParams.data.tipoEquipo);
   }
