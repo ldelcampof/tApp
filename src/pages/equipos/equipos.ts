@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Platform } from 'ionic-angular';
 import { NavController, NavParams, Refresher } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
 import { StorageServiceProvider } from "../../providers/storage-service/storage-service";
@@ -13,16 +14,22 @@ export class EquiposPage {
 
 	elements:any = []
   user:any = {}
+  session:any = {}
   CargarCombustible = CargarCombustiblePage
   VerCargasCombustible = VerCargasCombustiblePage
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     private http: HttpClient,
-    private storage: StorageServiceProvider) {
+    private storage: StorageServiceProvider,
+    public platform: Platform) {
 
-      this.user =  JSON.parse(this.storage.session.user);
-
+      if(this.platform.is('cordova')){
+        this.session = JSON.parse(this.storage.session)
+        this.user = JSON.parse(this.session.user)
+      }else{
+        this.user = JSON.parse(this.storage.session.user)
+      }
 
       this.loadEquipos(navParams.data.tipoEquipo);
   }
@@ -44,3 +51,8 @@ export class EquiposPage {
   }
 
 }
+
+
+
+ID 1224213250
+131fww

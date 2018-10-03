@@ -34,6 +34,8 @@ export class HomePage {
 			if(this._user.session.status){
 				this.userSession =  JSON.parse(this._user.session.user);
 
+				console.log(this.userSession);
+
 				if(this.userSession.RolesId == 7){
 					this.navCtrl.push(this.TiposEquipos)
 				}else{
@@ -56,7 +58,7 @@ export class HomePage {
 				this._user.session.status = true
 				this._user.set_storage()
 
-				if(this.userSession.RolesId == 1){
+				if(this.userSession.RolesId == 7){
 					this.navCtrl.push(this.TiposEquipos)
 				}else{
 					this.navCtrl.push(this.accionesPage)
