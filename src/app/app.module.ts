@@ -16,6 +16,8 @@ import { MyApp } from './app.component';
 import { TiposEquiposPage } from "../pages/tipos-equipos/tipos-equipos";
 import { ViewChecklistPage } from '../pages/view-checklist/view-checklist';
 import { VerCargasCombustiblePage } from '../pages/ver-cargas-combustible/ver-cargas-combustible';
+import { ConsultarChecklistPage } from '../pages/consultar-checklist/consultar-checklist';
+import { ConsultarCargasPage } from '../pages/consultar-cargas/consultar-cargas';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -42,6 +44,8 @@ import { IonicStorageModule } from '@ionic/storage';
 		TiposEquiposPage,
 		ViewChecklistPage,
 		VerCargasCombustiblePage,
+		ConsultarChecklistPage,
+		ConsultarCargasPage
 	],
 	imports: [
 		BrowserModule,
@@ -65,6 +69,8 @@ import { IonicStorageModule } from '@ionic/storage';
 		TiposEquiposPage,
 		ViewChecklistPage,
 		VerCargasCombustiblePage,
+		ConsultarChecklistPage,
+		ConsultarCargasPage
 	],
 	providers: [
 		StatusBar,

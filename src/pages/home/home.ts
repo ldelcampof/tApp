@@ -37,9 +37,9 @@ export class HomePage {
 				console.log(this.userSession);
 
 				if(this.userSession.RolesId == 7){
-					this.navCtrl.push(this.TiposEquipos)
+					this.navCtrl.setRoot(this.TiposEquipos)
 				}else{
-					this.navCtrl.push(this.accionesPage)
+					this.navCtrl.setRoot(this.accionesPage)
 				}
 			}
 	}
@@ -59,9 +59,9 @@ export class HomePage {
 				this._user.set_storage()
 
 				if(this.userSession.RolesId == 7){
-					this.navCtrl.push(this.TiposEquipos)
+					this.navCtrl.setRoot(this.TiposEquipos)
 				}else{
-					this.navCtrl.push(this.accionesPage)
+					this.navCtrl.setRoot(this.accionesPage)
 				}
 			}, error => {
 				this.showAlert(error.error)

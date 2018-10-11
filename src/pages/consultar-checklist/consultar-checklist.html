@@ -1,0 +1,55 @@
+<!--
+  Generated template for the ConsultarChecklistPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Consultar Checklist</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+	<ion-card>
+		<ion-card-content>
+			<form (ngSubmit)="consultarChecklist()">
+		    	<ion-list>
+		    		<ion-item>
+		    			<ion-label>División:</ion-label>
+		    			<ion-select name="division" [(ngModel)]="division">
+		    				<ion-option value="Concretos">Concretos</ion-option>
+		    				<ion-option value="Triturados">Triturados</ion-option>
+		    			</ion-select>
+		    		</ion-item>
+		    		<ion-item>
+		    			<ion-label>Fecha:</ion-label>
+		    			<ion-input type="date" name="fecha" [(ngModel)]="fecha"></ion-input>
+		    		</ion-item>
+		    		<ion-item>
+		    			<button ion-button full color="danger" type="submit">Buscar</button>
+		    		</ion-item>
+		    	</ion-list>
+		    </form>
+		</ion-card-content>
+	</ion-card>
+	<ion-list>
+		<ion-item *ngIf="checklists.length == 0">
+			<h2>No hay nada que mostrar</h2>
+		</ion-item>
+		<ion-item *ngFor="let checklist of checklists">
+			<h2>Folio {{ checklist.reporteId }} - {{ checklist.nombreCorto }}</h2>
+		    <p *ngIf="checklist.firmaJefePlanta == null">Firma Jefe de Planta: Pendiente</p>
+		    <p *ngIf="checklist.firmaJefePlanta != null">Firma Jefe de Planta: Correcto</p>
+		    <p *ngIf="checklist.firmaMantenimiento == null">Firma Mantenimiento: Pendiente</p>
+		    <p *ngIf="checklist.firmaMantenimiento != null">Firma Mantenimiento: Correcto</p>
+		    <p>Creado: {{ checklist.createdAt }}</p>
+		    <button ion-button clear item-end *ngIf="checklist.tipo == 'CR'" [navPush]="detailChecklistCr" [navParams]="{checklist: checklist}">Ver</button>
+		    <button ion-button clear item-end *ngIf="checklist.tipo == 'BP'" [navPush]="detailChecklistBp" [navParams]="{checklist: checklist}">Ver</button>
+		    <!-- <button ion-button clear item-end *ngIf="checklist.tipo == 'BP'" [navPush]="pushPage" [navParams]="params">Ver</button> -->
+		</ion-item>
+	</ion-list>
+</ion-content>

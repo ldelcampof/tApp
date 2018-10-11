@@ -1,0 +1,43 @@
+<!--
+  Generated template for the ConsultarCargasPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Consultar Cargas</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+	<ion-card>
+		<ion-card-content>
+			<form (ngSubmit)="consultarCarga()">
+		    	<ion-list>
+		    		<ion-item>
+		    			<ion-label>Fecha:</ion-label>
+		    			<ion-input type="date" name="fecha" [(ngModel)]="fecha"></ion-input>
+		    		</ion-item>
+		    		<ion-item>
+		    			<button ion-button full color="danger" type="submit">Buscar</button>
+		    		</ion-item>
+		    	</ion-list>
+		    </form>
+		</ion-card-content>
+	</ion-card>
+	<ion-list>
+		<ion-item *ngIf="checklists.length == 0">
+			<h2>No hay nada que mostrar</h2>
+		</ion-item>
+		<ion-item *ngFor="let checklist of checklists">
+			<h2>Equipo {{ checklist.EquiposCargasDiesel.nombreCorto }}</h2>
+		    <p>Carga diesel: {{ checklist.diesel }}</p>
+		    <p>Horometro: {{ checklist.nuevoHorometro }}</p>
+		    <p>Kilometraje: {{ checklist.nuevoKilometraje }}</p>
+		</ion-item>
+	</ion-list>
+</ion-content>

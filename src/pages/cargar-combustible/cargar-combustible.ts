@@ -3,7 +3,7 @@ import { NavController, NavParams, LoadingController, AlertController } from 'io
 import { HttpClient } from '@angular/common/http';
 import { StorageServiceProvider } from "../../providers/storage-service/storage-service";
 import { Platform } from 'ionic-angular';
-
+import moment from 'moment';
 /**
  * Generated class for the CargarCombustiblePage page.
  *
@@ -38,7 +38,8 @@ export class CargarCombustiblePage {
 		}else{
 			this.user = JSON.parse(this._user.session.user)
 		}
-		console.log(this.user)
+
+		this.carga.fechaCarga = moment().format('YYYY-MM-DD')
 
 	  	this.http.get(this._user.url + '/api/apiequipos/' + this.navParams.data.id)
 			.subscribe(response => {

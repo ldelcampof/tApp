@@ -7,7 +7,8 @@ import { CreateChecklistPage } from "../create-checklist/create-checklist";
 import { CreateChecklistBpPage } from "../create-checklist-bp/create-checklist-bp";
 import { ViewChecklistPage } from "../view-checklist/view-checklist";
 import { TiposEquiposPage } from "../tipos-equipos/tipos-equipos";
-
+import { ConsultarChecklistPage } from "../consultar-checklist/consultar-checklist";
+import { ConsultarCargasPage } from "../consultar-cargas/consultar-cargas";
 /**
  * Generated class for the AccionesPage page.
  *
@@ -26,6 +27,8 @@ export class AccionesPage {
 	viewChecklistPage = ViewChecklistPage
 	EquiposPage = EquiposPage
 	TiposEquipos = TiposEquiposPage
+	ConsultarChecklist = ConsultarChecklistPage
+	ConsultarCargas = ConsultarCargasPage
 
 	storage:any = {}
 	user:any = {}

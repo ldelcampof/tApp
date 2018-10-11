@@ -15,8 +15,8 @@
 <ion-content padding>
 	<div *ngIf="user.RolesId != 4">
 		<button ion-button full color="danger" large margin-bottom [navPush]="TiposEquipos" [navParams]="tipo">Ver equipos</button>
-		<button ion-button full color="danger" large margin-bottom [navPush]="EquiposPage" [navParams]="tipo">Ver Checklist</button>
-		<button ion-button full color="danger" large margin-bottom [navPush]="EquiposPage" [navParams]="tipo">Ver Cargas de Diesel</button>
+		<button ion-button full color="danger" large margin-bottom [navPush]="ConsultarChecklist">Ver Checklist</button>
+		<button ion-button full color="danger" large margin-bottom [navPush]="ConsultarCargas">Ver Cargas de Diesel</button>
 	</div>
 	<div *ngIf="user.RolesId == 4">
 		<ion-list padding>
