@@ -1,0 +1,47 @@
+<!--
+  Generated template for the OperadorPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Operador</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+	<ion-list padding>
+		<ion-item>
+			<ion-badge>Operador:</ion-badge>
+			<h2>{{ user.nombre }} {{ user.apellidoPaterno }} {{ user.apellidoMaterno }}</h2>
+		</ion-item>
+		<ion-item>
+			<ion-badge>Equipo asignado:</ion-badge>
+			<h2>{{ tipoVehiculo }}</h2>
+		</ion-item>
+		<ion-item>
+			<ion-badge>Nombre de equipo:</ion-badge>
+			<h2>{{ user.equipo.nombreCorto }}</h2>
+		</ion-item>
+		<ion-item>
+			<ion-badge>División:</ion-badge>
+			<h2>{{ user.equipo.asignadoDivision }}</h2>
+		</ion-item>
+	</ion-list>
+	<div *ngIf="user.equipo != null">
+		<button margin-bottom large ion-button full color="danger" [navPush]="createChecklistPage" *ngIf="tipoVehiculo == 'CAMIÓN REVOLVEDOR'">Crear checklist</button>
+		<button large ion-button full color="danger" [navPush]="createChecklistBPPage" *ngIf="tipoVehiculo == 'BOMBA PLUMA'" margin-bottom>Crear checklist</button>
+		<button large ion-button margin-bottom full color="danger" [navPush]="viewChecklistPage">Ver checklist</button>
+	</div>
+	<div *ngIf="user.equipo == null">
+		<ion-card>
+			<ion-card-content>
+				<h2>No tienes equipos asignados</h2>
+			</ion-card-content>
+		</ion-card>
+	</div>
+</ion-content>

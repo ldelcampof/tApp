@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { StorageServiceProvider } from "../../providers/storage-service/storage-service";
 import { CargarCombustiblePage } from "../cargar-combustible/cargar-combustible"
 import { VerCargasCombustiblePage } from '../ver-cargas-combustible/ver-cargas-combustible';
+import { ViewChecklistPage } from '../view-checklist/view-checklist';
 
 @Component({
 	selector: 'page-equipos',
@@ -17,6 +18,7 @@ export class EquiposPage {
 	session:any = {}
 	CargarCombustible = CargarCombustiblePage
 	VerCargasCombustible = VerCargasCombustiblePage
+	VerChecklist = ViewChecklistPage
 
 	constructor(public navCtrl: NavController,
 		public navParams: NavParams,

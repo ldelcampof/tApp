@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
-import { NavController, AlertController, LoadingController } from 'ionic-angular';
+import { NavController, AlertController, LoadingController, MenuController } from 'ionic-angular';
 import { MainPage } from '../main/main';
 import { AccionesPage } from '../acciones/acciones';
 import { HttpClient } from '@angular/common/http';
 import { TiposEquiposPage } from "../tipos-equipos/tipos-equipos";
+import { OperadorPage } from "../operador/operador";
+import { TabsPage } from "../tabs/tabs";
 
 import { StorageServiceProvider } from "../../providers/storage-service/storage-service";
 
@@ -14,8 +16,11 @@ import { StorageServiceProvider } from "../../providers/storage-service/storage-
 export class HomePage {
 
 	accionesPage = AccionesPage
+	tabsPage = TabsPage
 	TiposEquipos = TiposEquiposPage
+	Operador = OperadorPage
 	userSession:any = {}
+
 	user = {
 		nombreUsuario: '',
 		password: ''
@@ -28,19 +33,25 @@ export class HomePage {
 			private http: HttpClient,
 			private _user: StorageServiceProvider,
 			public alertCtrl: AlertController,
-			public loadingCtrl: LoadingController) {
+			public loadingCtrl: LoadingController,
+			private menu: MenuController) {
 
+			this.menu.enable(false, 'side_menu');
 			this._user.getStorage()
 			if(this._user.session.status){
 				this.userSession =  JSON.parse(this._user.session.user);
 
-				console.log(this.userSession);
-
 				if(this.userSession.RolesId == 7){
 					this.navCtrl.setRoot(this.TiposEquipos)
 				}else{
-					this.navCtrl.setRoot(this.accionesPage)
+					if(this.userSession.RolesId == 4){
+						this.navCtrl.setRoot(this.Operador)
+					}else{
+						this.navCtrl.setRoot(this.tabsPage)
+					}
 				}
+
+				// this.navCtrl.setRoot(this.rootPage)
 			}
 	}
 
@@ -61,7 +72,11 @@ export class HomePage {
 				if(this.userSession.RolesId == 7){
 					this.navCtrl.setRoot(this.TiposEquipos)
 				}else{
-					this.navCtrl.setRoot(this.accionesPage)
+					if(this.userSession.RolesId == 4){
+						this.navCtrl.setRoot(this.Operador)
+					}else{
+						this.navCtrl.setRoot(this.tabsPage)
+					}
 				}
 			}, error => {
 				this.showAlert(error.error)
@@ -75,10 +90,7 @@ export class HomePage {
 			buttons: [
 				{
 					text: 'Ok',
-					handler: () => {
-						if(message == 'Registro guardado')
-							this.navCtrl.pop();
-					}
+					handler: () => {}
 				},
 			]
 		});

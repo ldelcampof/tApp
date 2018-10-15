@@ -3,9 +3,6 @@ import { IonicPage, NavController, NavParams, Platform, LoadingController, Alert
 import { HttpClient } from '@angular/common/http';
 import { StorageServiceProvider } from "../../providers/storage-service/storage-service";
 
-import { DetalleChecklistBpPage } from '../detalle-checklist-bp/detalle-checklist-bp';
-import { DetalleChecklistCrPage } from '../detalle-checklist-cr/detalle-checklist-cr';
-
 /**
  * Generated class for the ConsultarCargasPage page.
  *

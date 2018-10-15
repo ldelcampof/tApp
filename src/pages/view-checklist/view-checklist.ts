@@ -35,13 +35,18 @@ export class ViewChecklistPage {
 		}else{
 			this.user = JSON.parse(this._user.session.user)
 		}
-		this.getChecklist()
+		console.log(navParams.data)
+		if(navParams.data.id == undefined){
+			this.getChecklist(this.user.equipo.id)
+		}else{
+			this.getChecklist(navParams.data.id)
+		}
 
 	}
 
-	getChecklist(){
+	getChecklist(id:any){
 		this.loading.present()
-		this.http.get(this._user.url + '/reportesoperador/equipo/' + this.user.equipo.id)
+		this.http.get(this._user.url + '/reportesoperador/equipo/' + id)
 			.subscribe(response => {
 				this.checklists = response
 				for(let i = 0; this.checklists.length > i; i++){

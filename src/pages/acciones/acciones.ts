@@ -1,14 +1,13 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, LoadingController  } from 'ionic-angular';
+import { App, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
 import { StorageServiceProvider } from "../../providers/storage-service/storage-service";
 
 import { EquiposPage } from "../equipos/equipos";
-import { CreateChecklistPage } from "../create-checklist/create-checklist";
-import { CreateChecklistBpPage } from "../create-checklist-bp/create-checklist-bp";
-import { ViewChecklistPage } from "../view-checklist/view-checklist";
 import { TiposEquiposPage } from "../tipos-equipos/tipos-equipos";
 import { ConsultarChecklistPage } from "../consultar-checklist/consultar-checklist";
 import { ConsultarCargasPage } from "../consultar-cargas/consultar-cargas";
+import { HomePage } from "../home/home";
+
 /**
  * Generated class for the AccionesPage page.
  *
@@ -22,25 +21,27 @@ import { ConsultarCargasPage } from "../consultar-cargas/consultar-cargas";
 })
 
 export class AccionesPage {
-	createChecklistPage = CreateChecklistPage
-	createChecklistBPPage = CreateChecklistBpPage
-	viewChecklistPage = ViewChecklistPage
-	EquiposPage = EquiposPage
+	Login = HomePage
+	equiposPage = EquiposPage
 	TiposEquipos = TiposEquiposPage
 	ConsultarChecklist = ConsultarChecklistPage
 	ConsultarCargas = ConsultarCargasPage
 
-	storage:any = {}
-	user:any = {}
-	tipoVehiculo:any = {}
-	tiposEquipo:any = []
+	division:any
 	loading:any = this.loadingCtrl.create({ content: 'Cargando...' })
+	storage:any = {}
+	tiposEquipo:any = []
+	tipoVehiculo:any = {}
+	user:any = {}
 
-	constructor(public navCtrl: NavController,
+	constructor(public app: App,
+		public navCtrl: NavController,
 		public navParams: NavParams,
 		public loadingCtrl: LoadingController,
-		private _user: StorageServiceProvider) {
+		private _user: StorageServiceProvider,
+		public alertCtrl: AlertController) {
 
+		this.division = this.navParams.get('division');
 		this._user.getStorage()
 		this.storage = this._user
 		this.loading.dismiss()
@@ -53,8 +54,36 @@ export class AccionesPage {
 	}
 
 	salir(){
-		this.storage.clean()
-		this.navCtrl.pop()
+		this.showConfirm()
+	}
+
+	showConfirm() {
+		const confirm = this.alertCtrl.create({
+			title: 'Salir de TRILOGIC',
+			message: '¿Realmente quieres salir de la aplicación?',
+			buttons: [
+				{
+					text: 'No',
+					handler: () => {
+						console.log('Disagree clicked');
+					}
+				},
+				{
+					text: 'Si',
+					handler: () => {
+						this.storage.clean()
+
+						this.app.getRootNav().setRoot(this.Login).then(data => {
+							console.log('Going home')
+						      console.log(data);
+						  }, (error) => {
+						      console.log(error);
+						  })
+					}
+				}
+			]
+		});
+		confirm.present();
 	}
 
 }

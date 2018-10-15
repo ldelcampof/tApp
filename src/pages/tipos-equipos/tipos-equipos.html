@@ -14,5 +14,4 @@
 
 <ion-content padding>
 	<button *ngFor="let tipo of tiposEquipo" margin-bottom large ion-button full color="danger" [navPush]="EquiposPage" [navParams]="tipo">{{ tipo.tipoEquipo }}</button>
-	<button ion-button full (click)="salir()" margin-top small>Salir</button>
 </ion-content>

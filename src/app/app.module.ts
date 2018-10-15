@@ -16,8 +16,11 @@ import { MyApp } from './app.component';
 import { TiposEquiposPage } from "../pages/tipos-equipos/tipos-equipos";
 import { ViewChecklistPage } from '../pages/view-checklist/view-checklist';
 import { VerCargasCombustiblePage } from '../pages/ver-cargas-combustible/ver-cargas-combustible';
-import { ConsultarChecklistPage } from '../pages/consultar-checklist/consultar-checklist';
+import { TabsPage } from '../pages/tabs/tabs';
+import { OperadorPage } from '../pages/operador/operador';
+
 import { ConsultarCargasPage } from '../pages/consultar-cargas/consultar-cargas';
+import { ConsultarChecklistPage } from '../pages/consultar-checklist/consultar-checklist';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -32,20 +35,22 @@ import { IonicStorageModule } from '@ionic/storage';
 	declarations: [
 		AccionesPage,
 		CargarCombustiblePage,
-		CreateChecklistPage,
+		ConsultarCargasPage,
+		ConsultarChecklistPage,
 		CreateChecklistBpPage,
-		DetalleChecklistCrPage,
+		CreateChecklistPage,
 		DetalleChecklistBpPage,
-		MyApp,
+		DetalleChecklistCrPage,
+		EquiposPage,
 		HomePage,
 		ListPage,
-		EquiposPage,
 		MainPage,
+		MyApp,
+		OperadorPage,
+		TabsPage,
 		TiposEquiposPage,
-		ViewChecklistPage,
 		VerCargasCombustiblePage,
-		ConsultarChecklistPage,
-		ConsultarCargasPage
+		ViewChecklistPage,
 	],
 	imports: [
 		BrowserModule,
@@ -57,20 +62,22 @@ import { IonicStorageModule } from '@ionic/storage';
 	entryComponents: [
 		AccionesPage,
 		CargarCombustiblePage,
-		CreateChecklistPage,
+		ConsultarCargasPage,
+		ConsultarChecklistPage,
 		CreateChecklistBpPage,
-		DetalleChecklistCrPage,
+		CreateChecklistPage,
 		DetalleChecklistBpPage,
-		MyApp,
+		DetalleChecklistCrPage,
+		EquiposPage,
 		HomePage,
 		ListPage,
-		EquiposPage,
 		MainPage,
+		MyApp,
+		OperadorPage,
+		TabsPage,
 		TiposEquiposPage,
-		ViewChecklistPage,
 		VerCargasCombustiblePage,
-		ConsultarChecklistPage,
-		ConsultarCargasPage
+		ViewChecklistPage,
 	],
 	providers: [
 		StatusBar,

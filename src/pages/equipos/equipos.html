@@ -14,10 +14,6 @@
 
 
 <ion-content padding>
-	<ion-refresher (ionRefresh)="doRefresh($event)">
-		<ion-refresher-content>
-		</ion-refresher-content>
-	</ion-refresher>
 	<h2>Lista de equipos</h2>
 	<ion-list>
 		<ion-item-sliding *ngFor="let element of elements">
@@ -30,6 +26,12 @@
 				<button ion-button color="success" [navPush]="CargarCombustible" [navParams]="element">
 					<ion-icon name="play"></ion-icon>
 					Cargar diesel
+				</button>
+			</ion-item-options>
+			<ion-item-options side="right" *ngIf="user.RolesId == 1 || user.RolesId == 9">
+				<button ion-button color="success" [navPush]="VerChecklist" [navParams]="element">
+					<ion-icon name="play"></ion-icon>
+					Ver Checklists
 				</button>
 			</ion-item-options>
 			<ion-item-options side="left">

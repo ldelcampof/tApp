@@ -5,6 +5,8 @@ import { HttpClient } from '@angular/common/http';
 import { Platform } from 'ionic-angular';
 
 import { EquiposPage } from "../equipos/equipos";
+import { HomePage } from "../home/home";
+
 
 
 /**
@@ -20,6 +22,7 @@ import { EquiposPage } from "../equipos/equipos";
 })
 export class TiposEquiposPage {
 	EquiposPage = EquiposPage
+	Home = HomePage
 
 	storage:any = {}
 	session:any = {}
@@ -46,14 +49,8 @@ export class TiposEquiposPage {
 		}
 
   		this.http.get(this.storage.url + '/Equipos/GetTiposEquipos')
-				.subscribe(response => {
-					this.tiposEquipo = response
-				})
+			.subscribe(response => {
+				this.tiposEquipo = response
+			})
   	}
-
-	salir(){
-		this.storage.clean()
-		this.navCtrl.pop()
-	}
-
 }
