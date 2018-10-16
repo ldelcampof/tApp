@@ -30,6 +30,7 @@ export class AccionesPage {
 	division:any
 	loading:any = this.loadingCtrl.create({ content: 'Cargando...' })
 	storage:any = {}
+	session:any = {}
 	tiposEquipo:any = []
 	tipoVehiculo:any = {}
 	user:any = {}
@@ -45,7 +46,12 @@ export class AccionesPage {
 		this._user.getStorage()
 		this.storage = this._user
 		this.loading.dismiss()
-		this.user = JSON.parse(this._user.session.user);
+		var user = JSON.stringify(this._user.session).replace(/\\/g, '')
+		console.log(user)
+		if(this.user != {}){
+			// this.session = JSON.parse(user)
+			// this.user = JSON.parse(this.session.user);
+		}
 
 		if(this.user.equipo != null && this.user.equipo != undefined){
 			this.tipoVehiculo = this.user.equipo.tipoVehiculo
