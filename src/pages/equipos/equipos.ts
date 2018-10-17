@@ -3,6 +3,7 @@ import { Platform } from 'ionic-angular';
 import { NavController, NavParams, Refresher } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
 import { StorageServiceProvider } from "../../providers/storage-service/storage-service";
+import { EquipoPage } from "../equipo/equipo"
 import { CargarCombustiblePage } from "../cargar-combustible/cargar-combustible"
 import { VerCargasCombustiblePage } from '../ver-cargas-combustible/ver-cargas-combustible';
 import { ViewChecklistPage } from '../view-checklist/view-checklist';
@@ -16,6 +17,7 @@ export class EquiposPage {
 	elements:any = []
 	user:any = {}
 	session:any = {}
+	Equipo = EquipoPage
 	CargarCombustible = CargarCombustiblePage
 	VerCargasCombustible = VerCargasCombustiblePage
 	VerChecklist = ViewChecklistPage

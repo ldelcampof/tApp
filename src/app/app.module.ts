@@ -4,28 +4,27 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { AccionesPage } from '../pages/acciones/acciones';
 import { CargarCombustiblePage } from '../pages/cargar-combustible/cargar-combustible';
-import { CreateChecklistPage } from '../pages/create-checklist/create-checklist';
+import { ConsultarCargasPage } from '../pages/consultar-cargas/consultar-cargas';
+import { ConsultarChecklistPage } from '../pages/consultar-checklist/consultar-checklist';
 import { CreateChecklistBpPage } from '../pages/create-checklist-bp/create-checklist-bp';
-import { DetalleChecklistCrPage } from '../pages/detalle-checklist-cr/detalle-checklist-cr';
+import { CreateChecklistPage } from '../pages/create-checklist/create-checklist';
 import { DetalleChecklistBpPage } from '../pages/detalle-checklist-bp/detalle-checklist-bp';
+import { DetalleChecklistCrPage } from '../pages/detalle-checklist-cr/detalle-checklist-cr';
+import { EquipoPage } from '../pages/equipo/equipo';
 import { EquiposPage } from '../pages/equipos/equipos';
 import { HomePage } from '../pages/home/home';
+import { HttpClientModule } from '@angular/common/http';
 import { ListPage } from '../pages/list/list';
 import { MainPage } from '../pages/main/main';
 import { MyApp } from './app.component';
-import { TiposEquiposPage } from "../pages/tipos-equipos/tipos-equipos";
-import { ViewChecklistPage } from '../pages/view-checklist/view-checklist';
-import { VerCargasCombustiblePage } from '../pages/ver-cargas-combustible/ver-cargas-combustible';
-import { TabsPage } from '../pages/tabs/tabs';
 import { OperadorPage } from '../pages/operador/operador';
-
-import { ConsultarCargasPage } from '../pages/consultar-cargas/consultar-cargas';
-import { ConsultarChecklistPage } from '../pages/consultar-checklist/consultar-checklist';
-
-import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { HttpClientModule } from '@angular/common/http';
+import { StatusBar } from '@ionic-native/status-bar';
 import { StorageServiceProvider } from '../providers/storage-service/storage-service';
+import { TabsPage } from '../pages/tabs/tabs';
+import { TiposEquiposPage } from "../pages/tipos-equipos/tipos-equipos";
+import { VerCargasCombustiblePage } from '../pages/ver-cargas-combustible/ver-cargas-combustible';
+import { ViewChecklistPage } from '../pages/view-checklist/view-checklist';
 
 // plugins
 import { IonicStorageModule } from '@ionic/storage';
@@ -41,6 +40,7 @@ import { IonicStorageModule } from '@ionic/storage';
 		CreateChecklistPage,
 		DetalleChecklistBpPage,
 		DetalleChecklistCrPage,
+		EquipoPage,
 		EquiposPage,
 		HomePage,
 		ListPage,
@@ -68,6 +68,7 @@ import { IonicStorageModule } from '@ionic/storage';
 		CreateChecklistPage,
 		DetalleChecklistBpPage,
 		DetalleChecklistCrPage,
+		EquipoPage,
 		EquiposPage,
 		HomePage,
 		ListPage,

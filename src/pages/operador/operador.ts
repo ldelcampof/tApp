@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController  } from 'ionic-angular';
-import { CreateChecklistPage } from "../create-checklist/create-checklist";
-import { CreateChecklistBpPage } from "../create-checklist-bp/create-checklist-bp";
-import { ViewChecklistPage } from "../view-checklist/view-checklist";
+// import { CreateChecklistPage } from "../create-checklist/create-checklist";
+// import { CreateChecklistBpPage } from "../create-checklist-bp/create-checklist-bp";
+// import { ViewChecklistPage } from "../view-checklist/view-checklist";
 import { StorageServiceProvider } from "../../providers/storage-service/storage-service";
 
 /**

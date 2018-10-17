@@ -1,0 +1,41 @@
+<!--
+  Generated template for the EquipoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Equipo</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+	<ion-card>
+		<ion-card-header> {{ equipo.tipoVehiculo }} </ion-card-header>
+		<ion-card-content>
+			<p><strong>No. económico:</strong> {{ equipo.noEconomico }}</p>
+			<p><strong>No. CommandBatch:</strong> {{ equipo.truckCode }}</p>
+			<p><strong>Nombre corto:</strong> {{ equipo.nombreCorto }}</p>
+			<p><strong>Nombre largo:</strong> {{ equipo.nombreLargo }}</p>
+			<p><strong>Marca:</strong> {{ equipo.marca }}</p>
+			<p><strong>Placas:</strong> {{ equipo.noPlacas }}</p>
+			<p><strong>No. Serie:</strong> {{ equipo.noSerie }}</p>
+			<p><strong>No. Motor:</strong> {{ equipo.noMotor }}</p>
+			<p><strong>Estado:</strong> {{ equipo.estado }}</p>
+			<p *ngIf="equipo.HorometrosKilometrajes.length > 0"><strong>Horómetro:</strong> {{ equipo.HorometrosKilometrajes[0].ultimoHorometro }}</p>
+			<p *ngIf="equipo.HorometrosKilometrajes.length > 0"><strong>Kilometraje:</strong> {{ equipo.HorometrosKilometrajes[0].ultimoKilometraje }}</p>
+			<p><strong>Cuenta contable:</strong> {{ equipo.cuentaContable }}</p>
+			<p><strong>Cuenta contable activos:</strong> {{ equipo.cuentaContableActivos }}</p>
+			<p><strong>Duración garantía:</strong> {{ equipo.duracionGarantia }}</p>
+			<p><strong>División:</strong> {{ equipo.asignadoDivision }}</p>
+			<p><strong>No. Factura:</strong> {{ equipo.noFactura }}</p>
+			<p><strong>Proveedor:</strong> {{ equipo.proveedor }}</p>
+			<p><strong>Valor Factura:</strong> {{ equipo.valorFactura }}</p>
+			<p><strong>Responsable:</strong> {{ equipo.responsableResguardo }}</p>
+		</ion-card-content>
+	</ion-card>
+</ion-content>

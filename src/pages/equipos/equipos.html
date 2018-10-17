@@ -14,7 +14,6 @@
 
 
 <ion-content padding>
-	<h2>Lista de equipos</h2>
 	<ion-list>
 		<ion-item-sliding *ngFor="let element of elements">
 			<ion-item>
@@ -31,13 +30,18 @@
 			<ion-item-options side="right" *ngIf="user.RolesId == 1 || user.RolesId == 9">
 				<button ion-button color="success" [navPush]="VerChecklist" [navParams]="element">
 					<ion-icon name="play"></ion-icon>
-					Ver Checklists
+					Checklists
 				</button>
 			</ion-item-options>
 			<ion-item-options side="left">
 				<button ion-button color="danger" [navPush]="VerCargasCombustible" [navParams]="element">
 					<ion-icon name="search"></ion-icon>
-					Ver cargas
+					Cargas
+				</button>
+
+				<button ion-button color="success" [navPush]="Equipo" [navParams]="element">
+					<ion-icon name="bus"></ion-icon>
+					Equipo
 				</button>
 			</ion-item-options>
 		</ion-item-sliding>

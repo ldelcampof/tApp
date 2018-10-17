@@ -35,7 +35,7 @@ export class ViewChecklistPage {
 		}else{
 			this.user = JSON.parse(this._user.session.user)
 		}
-		console.log(navParams.data)
+
 		if(navParams.data.id == undefined){
 			this.getChecklist(this.user.equipo.id)
 		}else{
