@@ -17,6 +17,14 @@
 	<ion-card>
 		<ion-card-header> {{ equipo.tipoVehiculo }} </ion-card-header>
 		<ion-card-content>
+			<img src="{{ user.url }}/{{ equipo.foto }}"/>
+			<h2>Operador</h2>
+			<p><strong>Nombre:</strong> {{ equipo.noEconomico }}</p>
+			<p><strong>No. seguro social:</strong> {{ equipo.noEconomico }}</p>
+			<p><strong>Edad:</strong> {{ equipo.noEconomico }}</p>
+			<p><strong>Fecha de nacimiento:</strong> {{ equipo.noEconomico }}</p>
+
+			<h2>Equipo</h2>
 			<p><strong>No. económico:</strong> {{ equipo.noEconomico }}</p>
 			<p><strong>No. CommandBatch:</strong> {{ equipo.truckCode }}</p>
 			<p><strong>Nombre corto:</strong> {{ equipo.nombreCorto }}</p>
@@ -26,8 +34,8 @@
 			<p><strong>No. Serie:</strong> {{ equipo.noSerie }}</p>
 			<p><strong>No. Motor:</strong> {{ equipo.noMotor }}</p>
 			<p><strong>Estado:</strong> {{ equipo.estado }}</p>
-			<p *ngIf="equipo.HorometrosKilometrajes.length > 0"><strong>Horómetro:</strong> {{ equipo.HorometrosKilometrajes[0].ultimoHorometro }}</p>
-			<p *ngIf="equipo.HorometrosKilometrajes.length > 0"><strong>Kilometraje:</strong> {{ equipo.HorometrosKilometrajes[0].ultimoKilometraje }}</p>
+			<p><strong>Horómetro:</strong> {{ equipo.horometro + equipo.horometroRecorrido }}</p>
+			<p><strong>Kilometraje:</strong> {{ equipo.kilometraje + equipo.kilometrajeRecorrido }}</p>
 			<p><strong>Cuenta contable:</strong> {{ equipo.cuentaContable }}</p>
 			<p><strong>Cuenta contable activos:</strong> {{ equipo.cuentaContableActivos }}</p>
 			<p><strong>Duración garantía:</strong> {{ equipo.duracionGarantia }}</p>

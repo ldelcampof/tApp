@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import { StorageServiceProvider } from "../../providers/storage-service/storage-service";
 import { HttpClient } from '@angular/common/http';
-import { Platform } from 'ionic-angular';
+// import { Platform } from 'ionic-angular';
 
 /**
  * Generated class for the EquipoPage page.
@@ -19,12 +19,15 @@ import { Platform } from 'ionic-angular';
 export class EquipoPage {
 	equipo:any = {}
 	loading:any = this.loadingCtrl.create({ content: 'Cargando...' })
+	HorometrosKilometrajes:any = []
+	user: any = {}
 
 	constructor(public navCtrl: NavController, public navParams: NavParams,
 		private http:HttpClient, private _user:StorageServiceProvider,
-		private platform:Platform, public alertCtrl: AlertController,
+		public alertCtrl: AlertController,
 		public loadingCtrl: LoadingController) {
-		this.equipo.HorometrosKilometrajes = []
+		this.HorometrosKilometrajes = []
+		this.user = this._user
 
 		this.getEquipo(this.navParams.data.id)
 
@@ -36,14 +39,16 @@ export class EquipoPage {
 
 	getEquipo(id: any){
 		this.loading.present()
-		this.http.get(this._user.url + '/api/apiEquipos/' + id)
-			.subscribe(response => {
-				this.equipo = response
-				this.loading.dismiss();
-			}, error => {
-				this.loading.dismiss();
-				this.showAlert(error.error)
-			})
+		this.equipo = this.navParams.data
+		this.HorometrosKilometrajes = this.navParams.data.HorometrosKilometrajes
+		this.loading.dismiss();
+		// this.http.get(this._user.url + '/api/apiEquipos/' + id)
+		// 	.subscribe(response => {
+		// 		this.equipo = response
+		// 		this.loading.dismiss();
+		// 	}, error => {
+		// 		this.showAlert(error.error)
+		// 	})
 	}
 	showAlert(message) {
 		const alert = this.alertCtrl.create({
