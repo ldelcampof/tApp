@@ -3,6 +3,7 @@ import { App, IonicPage, NavController, NavParams, AlertController, LoadingContr
 // import { CreateChecklistPage } from "../create-checklist/create-checklist";
 // import { CreateChecklistBpPage } from "../create-checklist-bp/create-checklist-bp";
 // import { ViewChecklistPage } from "../view-checklist/view-checklist";
+import { HomePage } from "../home/home";
 import { VerCargasCombustiblePage } from "../ver-cargas-combustible/ver-cargas-combustible";
 import { StorageServiceProvider } from "../../providers/storage-service/storage-service";
 
@@ -20,6 +21,7 @@ import { StorageServiceProvider } from "../../providers/storage-service/storage-
 })
 export class OperadorPage {
 	verCargasDiesel = VerCargasCombustiblePage
+	Login = HomePage
 
 	storage:any = {}
 	user:any = {}
