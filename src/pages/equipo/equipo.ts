@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, AlertController, LoadingController
 import { StorageServiceProvider } from "../../providers/storage-service/storage-service";
 import { HttpClient } from '@angular/common/http';
 // import { Platform } from 'ionic-angular';
+import moment from 'moment'
 
 /**
  * Generated class for the EquipoPage page.
@@ -18,6 +19,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class EquipoPage {
 	equipo:any = {}
+	empleado:any = {}
 	loading:any = this.loadingCtrl.create({ content: 'Cargando...' })
 	HorometrosKilometrajes:any = []
 	user: any = {}
@@ -41,14 +43,19 @@ export class EquipoPage {
 		this.loading.present()
 		this.equipo = this.navParams.data
 		this.HorometrosKilometrajes = this.navParams.data.HorometrosKilometrajes
-		this.loading.dismiss();
-		// this.http.get(this._user.url + '/api/apiEquipos/' + id)
-		// 	.subscribe(response => {
-		// 		this.equipo = response
-		// 		this.loading.dismiss();
-		// 	}, error => {
-		// 		this.showAlert(error.error)
-		// 	})
+		this.http.get(this._user.url + '/api/apiEmpleados/' + this.navParams.data.codigoEmpleado)
+			.subscribe(response => {
+				this.empleado = response
+				this.empleado.edad = moment(this.empleado.fechanacimiento).fromNow()
+				this.empleado.edad = this.empleado.edad.split(' ')
+				this.empleado.edad = this.empleado.edad[0]
+				this.empleado.fechanacimiento = moment(this.empleado.fechanacimiento).format('DD/MM/YYYY')
+				console.log(this.empleado)
+				this.loading.dismiss();
+			}, error => {
+				this.showAlert(error.error)
+				this.loading.dismiss();
+			})
 	}
 	showAlert(message) {
 		const alert = this.alertCtrl.create({
