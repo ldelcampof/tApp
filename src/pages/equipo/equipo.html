@@ -17,7 +17,7 @@
 	<ion-card>
 		<ion-card-header> {{ equipo.tipoVehiculo }} </ion-card-header>
 		<ion-card-content>
-			<img src="{{ user.url }}/{{ equipo.foto }}"/>
+			<img *ngIf="equipo.foto != null" src="{{ user.url }}/{{ equipo.foto }}"/>
 			<h2>Operador</h2>
 			<p><strong>Nombre:</strong> {{ empleado.nombre }} {{ empleado.apellidopaterno }} {{ empleado.apellidomaterno }}</p>
 			<p><strong>No. seguro social:</strong> {{ empleado.numerosegurosocial }}</p>

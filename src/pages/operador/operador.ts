@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController  } from 'ionic-angular';
+import { App, IonicPage, NavController, NavParams, AlertController, LoadingController  } from 'ionic-angular';
 // import { CreateChecklistPage } from "../create-checklist/create-checklist";
 // import { CreateChecklistBpPage } from "../create-checklist-bp/create-checklist-bp";
 // import { ViewChecklistPage } from "../view-checklist/view-checklist";
+import { VerCargasCombustiblePage } from "../ver-cargas-combustible/ver-cargas-combustible";
 import { StorageServiceProvider } from "../../providers/storage-service/storage-service";
 
 /**
@@ -18,16 +19,20 @@ import { StorageServiceProvider } from "../../providers/storage-service/storage-
   templateUrl: 'operador.html',
 })
 export class OperadorPage {
+	verCargasDiesel = VerCargasCombustiblePage
+
 	storage:any = {}
 	user:any = {}
 	tipoVehiculo:any = {}
 	tiposEquipo:any = []
 	loading:any = this.loadingCtrl.create({ content: 'Cargando...' })
 
-  	constructor(public navCtrl: NavController,
+  	constructor(public app: App,
+  		public navCtrl: NavController,
 		public navParams: NavParams,
 		public loadingCtrl: LoadingController,
-		private _user: StorageServiceProvider) {
+		private _user: StorageServiceProvider,
+		public alertCtrl: AlertController) {
 
   		this._user.getStorage()
 		this.storage = this._user
@@ -41,6 +46,39 @@ export class OperadorPage {
 
 	ionViewDidLoad() {
 		console.log('ionViewDidLoad OperadorPage');
+	}
+
+	salir(){
+		this.showConfirm()
+	}
+
+	showConfirm() {
+		const confirm = this.alertCtrl.create({
+			title: 'Salir de TRILOGIC',
+			message: '¿Realmente quieres salir de la aplicación?',
+			buttons: [
+				{
+					text: 'No',
+					handler: () => {
+						console.log('Disagree clicked');
+					}
+				},
+				{
+					text: 'Si',
+					handler: () => {
+						this.storage.clean()
+
+						this.app.getRootNav().setRoot(this.Login).then(data => {
+							console.log('Going home')
+						      console.log(data);
+						  }, (error) => {
+						      console.log(error);
+						  })
+					}
+				}
+			]
+		});
+		confirm.present();
 	}
 
 }

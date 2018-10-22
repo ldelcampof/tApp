@@ -53,7 +53,7 @@ export class EquipoPage {
 				console.log(this.empleado)
 				this.loading.dismiss();
 			}, error => {
-				this.showAlert(error.error)
+				this.showAlert('No tiene o no se encuentra el empleado asignado')
 				this.loading.dismiss();
 			})
 	}
