@@ -19,11 +19,14 @@
 		<ion-card-content>
 			<img *ngIf="equipo.foto != null" src="{{ user.url }}/{{ equipo.foto }}"/>
 			<h2>Operador</h2>
-			<p><strong>Nombre:</strong> {{ empleado.nombre }} {{ empleado.apellidopaterno }} {{ empleado.apellidomaterno }}</p>
-			<p><strong>No. seguro social:</strong> {{ empleado.numerosegurosocial }}</p>
-			<p><strong>Codigo:</strong> {{ empleado.codigoempleado }}</p>
-			<p><strong>Edad:</strong> {{ empleado.edad }} años</p>
-			<p><strong>Fecha de nacimiento:</strong> {{ empleado.fechanacimiento }}</p>
+			<p *ngIf="empleado == 0">No tiene operador asignado</p>
+			<div *ngIf="empleado != 0">
+				<p><strong>Nombre:</strong> {{ empleado.nombre }} {{ empleado.apellidopaterno }} {{ empleado.apellidomaterno }}</p>
+				<p><strong>No. seguro social:</strong> {{ empleado.numerosegurosocial }}</p>
+				<p><strong>Codigo:</strong> {{ empleado.codigoempleado }}</p>
+				<p><strong>Edad:</strong> {{ empleado.edad }} años</p>
+				<p><strong>Fecha de nacimiento:</strong> {{ empleado.fechanacimiento }}</p>
+			</div>
 
 			<h2>Equipo</h2>
 			<p><strong>No. económico:</strong> {{ equipo.noEconomico }}</p>

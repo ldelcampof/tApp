@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
+import { NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import { StorageServiceProvider } from "../../providers/storage-service/storage-service";
 import { HttpClient } from '@angular/common/http';
 // import { Platform } from 'ionic-angular';
@@ -12,7 +12,6 @@ import moment from 'moment'
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: 'page-equipo',
   templateUrl: 'equipo.html',
@@ -35,10 +34,6 @@ export class EquipoPage {
 
 	}
 
-	ionViewDidLoad() {
-		console.log('ionViewDidLoad EquipoPage');
-	}
-
 	getEquipo(id: any){
 		this.loading.present()
 		this.equipo = this.navParams.data
@@ -53,7 +48,7 @@ export class EquipoPage {
 				console.log(this.empleado)
 				this.loading.dismiss();
 			}, error => {
-				this.showAlert('No tiene o no se encuentra el empleado asignado')
+				this.empleado = 0
 				this.loading.dismiss();
 			})
 	}

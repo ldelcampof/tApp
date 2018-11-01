@@ -4,6 +4,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { AccionesPage } from '../pages/acciones/acciones';
 import { CargarCombustiblePage } from '../pages/cargar-combustible/cargar-combustible';
+import { ConsultorPage } from '../pages/consultor/consultor';
 import { ConsultarCargasPage } from '../pages/consultar-cargas/consultar-cargas';
 import { ConsultarChecklistPage } from '../pages/consultar-checklist/consultar-checklist';
 import { CreateChecklistBpPage } from '../pages/create-checklist-bp/create-checklist-bp';
@@ -12,6 +13,7 @@ import { DetalleChecklistBpPage } from '../pages/detalle-checklist-bp/detalle-ch
 import { DetalleChecklistCrPage } from '../pages/detalle-checklist-cr/detalle-checklist-cr';
 import { EquipoPage } from '../pages/equipo/equipo';
 import { EquiposPage } from '../pages/equipos/equipos';
+import { GeneralChecklistPage } from '../pages/general-checklist/general-checklist';
 import { HomePage } from '../pages/home/home';
 import { HttpClientModule } from '@angular/common/http';
 import { ListPage } from '../pages/list/list';
@@ -35,6 +37,7 @@ import { IonicStorageModule } from '@ionic/storage';
 		AccionesPage,
 		CargarCombustiblePage,
 		ConsultarCargasPage,
+		ConsultorPage,
 		ConsultarChecklistPage,
 		CreateChecklistBpPage,
 		CreateChecklistPage,
@@ -42,6 +45,7 @@ import { IonicStorageModule } from '@ionic/storage';
 		DetalleChecklistCrPage,
 		EquipoPage,
 		EquiposPage,
+		GeneralChecklistPage,
 		HomePage,
 		ListPage,
 		MainPage,
@@ -63,6 +67,7 @@ import { IonicStorageModule } from '@ionic/storage';
 		AccionesPage,
 		CargarCombustiblePage,
 		ConsultarCargasPage,
+		ConsultorPage,
 		ConsultarChecklistPage,
 		CreateChecklistBpPage,
 		CreateChecklistPage,
@@ -70,6 +75,7 @@ import { IonicStorageModule } from '@ionic/storage';
 		DetalleChecklistCrPage,
 		EquipoPage,
 		EquiposPage,
+		GeneralChecklistPage,
 		HomePage,
 		ListPage,
 		MainPage,

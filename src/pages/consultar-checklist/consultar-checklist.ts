@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform, LoadingController, AlertController} from 'ionic-angular';
+import { NavController, NavParams, Platform, LoadingController, AlertController} from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
 import { StorageServiceProvider } from "../../providers/storage-service/storage-service";
 
@@ -12,7 +12,6 @@ import { DetalleChecklistCrPage } from '../detalle-checklist-cr/detalle-checklis
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: 'page-consultar-checklist',
   templateUrl: 'consultar-checklist.html',
@@ -42,10 +41,6 @@ export class ConsultarChecklistPage {
 			this.user = JSON.parse(this._user.session.user)
 		}
   	}
-
-	ionViewDidLoad() {
-		console.log('ionViewDidLoad ConsultarChecklistPage');
-	}
 
 	consultarChecklist(){
   		var data = new FormData()

@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { App, IonicPage, NavController, NavParams, AlertController, LoadingController  } from 'ionic-angular';
-// import { CreateChecklistPage } from "../create-checklist/create-checklist";
-// import { CreateChecklistBpPage } from "../create-checklist-bp/create-checklist-bp";
-// import { ViewChecklistPage } from "../view-checklist/view-checklist";
+import { App, NavController, NavParams, AlertController, LoadingController  } from 'ionic-angular';
+import { CreateChecklistPage } from "../create-checklist/create-checklist";
+import { CreateChecklistBpPage } from "../create-checklist-bp/create-checklist-bp";
+import { ViewChecklistPage } from "../view-checklist/view-checklist";
+import { GeneralChecklistPage } from "../general-checklist/general-checklist";
 import { HomePage } from "../home/home";
 import { VerCargasCombustiblePage } from "../ver-cargas-combustible/ver-cargas-combustible";
 import { StorageServiceProvider } from "../../providers/storage-service/storage-service";
@@ -14,13 +15,16 @@ import { StorageServiceProvider } from "../../providers/storage-service/storage-
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: 'page-operador',
   templateUrl: 'operador.html',
 })
 export class OperadorPage {
 	verCargasDiesel = VerCargasCombustiblePage
+	createChecklistPage = CreateChecklistPage
+	createChecklistBPPage = CreateChecklistBpPage
+	viewChecklistPage = ViewChecklistPage
+	generalChecklist = GeneralChecklistPage
 	Login = HomePage
 
 	storage:any = {}
@@ -45,10 +49,6 @@ export class OperadorPage {
 			this.tipoVehiculo = this.user.equipo.tipoVehiculo
 		}
   	}
-
-	ionViewDidLoad() {
-		console.log('ionViewDidLoad OperadorPage');
-	}
 
 	salir(){
 		this.showConfirm()

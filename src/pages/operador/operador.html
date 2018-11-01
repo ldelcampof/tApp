@@ -35,6 +35,7 @@
 	<div *ngIf="user.equipo != null">
 		<button margin-bottom large ion-button full color="danger" [navPush]="createChecklistPage" *ngIf="tipoVehiculo == 'CAMIÓN REVOLVEDOR'">Crear checklist</button>
 		<button large ion-button full color="danger" [navPush]="createChecklistBPPage" *ngIf="tipoVehiculo == 'BOMBA PLUMA'" margin-bottom>Crear checklist</button>
+		<button large ion-button full color="danger" [navPush]="generalChecklist" [navParams]="user.equipo" *ngIf="tipoVehiculo != 'BOMBA PLUMA' && tipoVehiculo != 'CAMIÓN REVOLVEDOR'" margin-bottom>Crear checklist</button>
 		<button large ion-button margin-bottom full color="danger" [navPush]="viewChecklistPage">Ver checklist</button>
 		<button large ion-button margin-bottom full color="danger" [navParams]="user.equipo" [navPush]="verCargasDiesel">Ver cargas Diesel</button>
 		<button ion-button full (click)="salir()" margin-top small>Salir</button>

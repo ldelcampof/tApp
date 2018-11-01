@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform, LoadingController, AlertController} from 'ionic-angular';
+import { NavController, NavParams, Platform, LoadingController, AlertController} from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
 import { StorageServiceProvider } from "../../providers/storage-service/storage-service";
 
@@ -10,7 +10,6 @@ import { StorageServiceProvider } from "../../providers/storage-service/storage-
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: 'page-consultar-cargas',
   templateUrl: 'consultar-cargas.html',
@@ -35,10 +34,6 @@ export class ConsultarCargasPage {
 			this.user = JSON.parse(this._user.session.user)
 		}
   	}
-
-	ionViewDidLoad() {
-		console.log('ionViewDidLoad ConsultarChecklistPage');
-	}
 
 	consultarCarga(){
   		var data = new FormData()
