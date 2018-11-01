@@ -16,10 +16,17 @@
 <ion-content padding>
 	<form (ngSubmit)="sendData()">
 		<ion-list>
-			<ion-item *ngFor="let respuesta of tipoEquipo.elementos;let i = index">
+			<ion-list radio-group *ngFor="let respuesta of tipoEquipo.elementos;let i = index" [(ngModel)]="respuestas[i].respuesta" [ngModelOptions]="{standalone: true}">
 				<ion-label *ngIf="respuesta.elemento" stacked>{{ respuesta.elemento.nombre }}</ion-label>
-				<ion-input type="text" [(ngModel)]="respuestas[i].respuesta" [ngModelOptions]="{standalone: true}"></ion-input>
-			</ion-item>
+				<ion-item>
+					<ion-label>Conforme</ion-label>
+					<ion-radio value="CONFORME" checked="true"></ion-radio>
+				</ion-item>
+				<ion-item>
+					<ion-label>Falla</ion-label>
+					<ion-radio value="FALLA"></ion-radio>
+				</ion-item>
+			</ion-list>
 		</ion-list>
 		<button ion-button color="danger" type="submit">Guardar</button>
 	</form>
