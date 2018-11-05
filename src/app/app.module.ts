@@ -9,6 +9,7 @@ import { ConsultarCargasPage } from '../pages/consultar-cargas/consultar-cargas'
 import { ConsultarChecklistPage } from '../pages/consultar-checklist/consultar-checklist';
 import { CreateChecklistBpPage } from '../pages/create-checklist-bp/create-checklist-bp';
 import { CreateChecklistPage } from '../pages/create-checklist/create-checklist';
+import { DetalleChecklistPage } from '../pages/detalle-checklist/detalle-checklist';
 import { DetalleChecklistBpPage } from '../pages/detalle-checklist-bp/detalle-checklist-bp';
 import { DetalleChecklistCrPage } from '../pages/detalle-checklist-cr/detalle-checklist-cr';
 import { EquipoPage } from '../pages/equipo/equipo';
@@ -41,6 +42,7 @@ import { IonicStorageModule } from '@ionic/storage';
 		ConsultarChecklistPage,
 		CreateChecklistBpPage,
 		CreateChecklistPage,
+		DetalleChecklistPage,
 		DetalleChecklistBpPage,
 		DetalleChecklistCrPage,
 		EquipoPage,
@@ -71,6 +73,7 @@ import { IonicStorageModule } from '@ionic/storage';
 		ConsultarChecklistPage,
 		CreateChecklistBpPage,
 		CreateChecklistPage,
+		DetalleChecklistPage,
 		DetalleChecklistBpPage,
 		DetalleChecklistCrPage,
 		EquipoPage,

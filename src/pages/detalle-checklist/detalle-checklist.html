@@ -1,0 +1,23 @@
+<!--
+  Generated template for the DetalleChecklistPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Ver Checklist</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+	<ion-list>
+		<ion-item *ngFor="let respuesta of respuestas;let i = index">
+			<p *ngIf="respuesta.elemento" stacked>{{ respuesta.elemento.nombre }}</p>
+			<p>{{ respuesta.respuesta }}</p>
+		</ion-item>
+	</ion-list>
+</ion-content>

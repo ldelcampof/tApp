@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import { StorageServiceProvider } from "../../providers/storage-service/storage-service";
 import { HttpClient } from '@angular/common/http';
+import { DetalleChecklistPage } from '../detalle-checklist/detalle-checklist';
 import { DetalleChecklistBpPage } from '../detalle-checklist-bp/detalle-checklist-bp';
 import { DetalleChecklistCrPage } from '../detalle-checklist-cr/detalle-checklist-cr';
 import { Platform } from 'ionic-angular';
-
-import moment from 'moment'
+import moment from 'moment';
 
 @Component({
   selector: 'page-view-checklist',
@@ -20,8 +20,10 @@ export class ViewChecklistPage {
 			id: 0
 		}
 	}
+	equipo:any = {}
 	detailChecklistBp = DetalleChecklistBpPage
 	detailChecklistCr = DetalleChecklistCrPage
+	detailChecklist = DetalleChecklistPage
 	loading:any = this.loadingCtrl.create({ content: 'Cargando...' })
 
 	constructor(public navCtrl: NavController, public navParams: NavParams,
@@ -37,16 +39,25 @@ export class ViewChecklistPage {
 		}
 
 		if(navParams.data.id == undefined){
-			this.getChecklist(this.user.equipo.id)
+			this.equipo = this.user.equipo
 		}else{
-			this.getChecklist(navParams.data.id)
+			this.equipo = navParams.data
 		}
+
+		this.getChecklist(this.equipo)
 
 	}
 
-	getChecklist(id:any){
+	getChecklist(equipo:any){
 		this.loading.present()
-		this.http.get(this._user.url + '/reportesoperador/equipo/' + id)
+		var url = ''
+		if(equipo.tipoVehiculo == 'BOMBA PLUMA' || equipo.tipoVehiculo == 'CAMIÓN REVOLVEDOR'){
+			url = '/reportesoperador/equipo/'
+		}else{
+			url = '/checklist/GetChecklists/'
+		}
+
+		this.http.get(this._user.url + url + equipo.id)
 			.subscribe(response => {
 				this.checklists = response
 				for(let i = 0; this.checklists.length > i; i++){
