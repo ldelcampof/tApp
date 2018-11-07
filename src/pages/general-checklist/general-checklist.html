@@ -16,17 +16,25 @@
 <ion-content padding>
 	<form (ngSubmit)="sendData()">
 		<ion-list>
-			<ion-list radio-group *ngFor="let respuesta of tipoEquipo.elementos;let i = index" [(ngModel)]="respuestas[i].respuesta" [ngModelOptions]="{standalone: true}">
-				<ion-label *ngIf="respuesta.elemento" stacked>{{ respuesta.elemento.nombre }}</ion-label>
-				<ion-item>
-					<ion-label>Conforme</ion-label>
-					<ion-radio value="CONFORME" checked="true"></ion-radio>
+			<div *ngFor="let respuesta of tipoEquipo.elementos;let i = index">
+				<ion-list radio-group [(ngModel)]="respuestas[i].respuesta" [ngModelOptions]="{standalone: true}">
+					<ion-label *ngIf="respuesta.elemento" stacked>{{ respuesta.elemento.nombre }}</ion-label>
+					<ion-item *ngIf="respuesta.elemento.tipo == 'Opción'">
+						<ion-label>Conforme</ion-label>
+						<ion-radio value="CONFORME" checked="true"></ion-radio>
+					</ion-item>
+					<ion-item *ngIf="respuesta.elemento.tipo == 'Opción'">
+						<ion-label>Falla</ion-label>
+						<ion-radio value="FALLA"></ion-radio>
+					</ion-item>
+				</ion-list>
+				<ion-item *ngIf="respuesta.elemento.tipo == 'Texto'" [(ngModel)]="respuestas[i].respuesta" [ngModelOptions]="{standalone: true}">
+					<ion-input type="text"></ion-input>
 				</ion-item>
-				<ion-item>
-					<ion-label>Falla</ion-label>
-					<ion-radio value="FALLA"></ion-radio>
+				<ion-item *ngIf="respuesta.elemento.tipo == 'Número'" [(ngModel)]="respuestas[i].respuesta" [ngModelOptions]="{standalone: true}">
+					<ion-input type="number"></ion-input>
 				</ion-item>
-			</ion-list>
+			</div>
 		</ion-list>
 		<button ion-button color="danger" type="submit">Guardar</button>
 	</form>
