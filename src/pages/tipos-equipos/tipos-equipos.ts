@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, LoadingController } from 'ionic-angular';
+import { App, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
 import { StorageServiceProvider } from "../../providers/storage-service/storage-service";
 import { HttpClient } from '@angular/common/http';
 import { Platform } from 'ionic-angular';
@@ -35,7 +35,9 @@ export class TiposEquiposPage {
 		public loadingCtrl: LoadingController,
 		private _user: StorageServiceProvider,
 		public platform: Platform,
-		private http: HttpClient) {
+		private http: HttpClient,
+		public app: App,
+		private alertCtrl: AlertController) {
 
 		this._user.getStorage()
 		this.storage = this._user
@@ -53,4 +55,36 @@ export class TiposEquiposPage {
 				this.tiposEquipo = response
 			})
   	}
+  	salir(){
+		this.showConfirm()
+	}
+
+	showConfirm() {
+		const confirm = this.alertCtrl.create({
+			title: 'Salir de TRILOGIC',
+			message: '¿Realmente quieres salir de la aplicación?',
+			buttons: [
+				{
+					text: 'No',
+					handler: () => {
+						console.log('Disagree clicked');
+					}
+				},
+				{
+					text: 'Si',
+					handler: () => {
+						this.storage.clean()
+
+						this.app.getRootNav().setRoot(this.Login).then(data => {
+							console.log('Going home')
+						      console.log(data);
+						  }, (error) => {
+						      console.log(error);
+						  })
+					}
+				}
+			]
+		});
+		confirm.present();
+	}
 }
