@@ -50,7 +50,12 @@ export class ViewChecklistPage {
 
 	getChecklist(equipo:any){
 		this.loading.present()
-		var url = '/checklist/GetChecklists/'
+		var url = ''
+		if(equipo.tipoVehiculo == 'BOMBA PLUMA' || equipo.tipoVehiculo == 'CAMIÓN REVOLVEDOR'){
+			url = '/reportesoperador/equipo/'
+		}else{
+			url = '/checklist/GetChecklists/'
+		}
 
 		this.http.get(this._user.url + url + equipo.id)
 			.subscribe(response => {

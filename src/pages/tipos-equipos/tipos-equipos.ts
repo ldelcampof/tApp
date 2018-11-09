@@ -40,10 +40,10 @@ export class TiposEquiposPage {
 		this._user.getStorage()
 		this.storage = this._user
 		this.loading.dismiss()
-
+// console.log(this.storage)
 		if(this.platform.is('cordova')){
-			this.session = JSON.parse(this.storage.session)
-			this.user = JSON.parse(this.session.user)
+			// this.session = JSON.parse(this.storage.session)
+			// this.user = JSON.parse(this.session.user)
 		}else{
 			this.user = JSON.parse(this.storage.session.user)
 		}
