@@ -16,6 +16,7 @@ export class CreateChecklistPage {
 	horometro:any = ''
 	kilometraje:any = ''
 	user:any = {}
+	exists:any = {}
 	loading:any = this.loadingCtrl.create({ content: 'Cargando...' })
 
 	constructor(public navCtrl: NavController, public navParams: NavParams,
@@ -33,15 +34,25 @@ export class CreateChecklistPage {
 		}
 		this.loading.present()
 
-		this.http.get(this._user.url + '/api/apiequipos/' + this.user.equipo.id)
+		this.http.get(this._user.url + '/checklist/checkexist/' + this.user.equipo.id)
 			.subscribe(response => {
-				this.checklist = response
-				this.horometro = this.checklist.HorometrosKilometrajes[0].ultimoHorometro
-				this.kilometraje = this.checklist.HorometrosKilometrajes[0].ultimoKilometraje
-				this.loading.dismiss()
-			}, error => {
-				this.loading.dismiss()
-				this.showAlert(error.error)
+				this.exists = response
+				if(this.exists.length == 0){
+					this.http.get(this._user.url + '/api/apiequipos/' + this.user.equipo.id)
+						.subscribe(response => {
+							this.checklist = response
+							this.horometro = this.checklist.HorometrosKilometrajes[0].ultimoHorometro
+							this.kilometraje = this.checklist.HorometrosKilometrajes[0].ultimoKilometraje
+							this.loading.dismiss()
+						}, error => {
+							this.loading.dismiss()
+							this.showAlert(error.error)
+						})
+				}else{
+					this.loading.dismiss()
+					this.showAlert('Ya fue dado un checklist el dia de hoy')
+					this.navCtrl.pop()
+				}
 			})
 
 		this.mantenimiento = {

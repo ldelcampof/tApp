@@ -22,7 +22,7 @@ import { HomePage } from "../home/home";
 })
 export class TiposEquiposPage {
 	EquiposPage = EquiposPage
-	Home = HomePage
+	Login = HomePage
 
 	storage:any = {}
 	session:any = {}

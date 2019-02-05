@@ -23,6 +23,7 @@ export class GeneralChecklistPage {
 	user:any = {}
 	tipoEquipo:any = {}
 	newResponse:any
+	exists:any = {}
 	loading:any = this.loadingCtrl.create({ content: 'Cargando...' })
 
   	constructor(public navCtrl: NavController,
@@ -37,19 +38,28 @@ export class GeneralChecklistPage {
 		this.storage = this._user
 		this.loading.dismiss()
 
-  		this.http.get(this.storage.url + '/equipos/getequipo/' + this.navParams.data.id)
+		this.http.get(this._user.url + '/checklist/checkexist/' + this.navParams.data.id)
 			.subscribe(response => {
-				this.newResponse = response
-				console.log(response[0])
-				this.tipoEquipo = this.newResponse[0].TiposEquipos
-				for(let i = 0; this.tipoEquipo.elementos.length > i; i++){
-                    let opcion = {
-                        ElementosChecklistId: this.tipoEquipo.elementos[i].elemento.Id,
-                        EquipoId: this.navParams.data.id
-                    }
-                    this.respuestas.push(opcion)
-                }
-			})
+				this.exists = response
+				if(this.exists.length == 0){
+			  		this.http.get(this.storage.url + '/equipos/getequipo/' + this.navParams.data.id)
+						.subscribe(response => {
+							this.newResponse = response
+							this.tipoEquipo = this.newResponse[0].TiposEquipos
+							for(let i = 0; this.tipoEquipo.elementos.length > i; i++){
+			                    let opcion = {
+			                        ElementosChecklistId: this.tipoEquipo.elementos[i].elemento.Id,
+			                        EquipoId: this.navParams.data.id
+			                    }
+			                    this.respuestas.push(opcion)
+			                }
+						})
+				}else{
+					this.loading.dismiss()
+					this.showAlert('Ya fue dado un checklist el dia de hoy')
+					this.navCtrl.pop()
+				}
+		})
   	}
 
 	ionViewDidLoad() {

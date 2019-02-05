@@ -5,6 +5,7 @@ import { AccionesPage } from '../acciones/acciones';
 import { HttpClient } from '@angular/common/http';
 import { TiposEquiposPage } from "../tipos-equipos/tipos-equipos";
 import { OperadorPage } from "../operador/operador";
+import { PrecioDieselPage } from "../precio-diesel/precio-diesel";
 import { TabsPage } from "../tabs/tabs";
 
 import { StorageServiceProvider } from "../../providers/storage-service/storage-service";
@@ -18,8 +19,10 @@ export class HomePage {
 	accionesPage = AccionesPage
 	tabsPage = TabsPage
 	TiposEquipos = TiposEquiposPage
+	PrecioDieselPage = PrecioDieselPage
 	Operador = OperadorPage
 	userSession:any = {}
+	precioDiesel:any = 0
 
 	user = {
 		nombreUsuario: '',
@@ -42,7 +45,15 @@ export class HomePage {
 				this.userSession =  JSON.parse(this._user.session.user);
 
 				if(this.userSession.RolesId == 7){
-					this.navCtrl.setRoot(this.TiposEquipos)
+					this.http.get(this._user.url + '/cargasdiesel/getprecio')
+						.subscribe(response => {
+							this.precioDiesel = response
+							if(this.precioDiesel != null){
+								this.navCtrl.setRoot(this.TiposEquipos)
+							}else{
+								this.navCtrl.setRoot(this.PrecioDieselPage)
+							}
+						})
 				}else{
 					if(this.userSession.RolesId == 4){
 						this.navCtrl.setRoot(this.Operador)
@@ -70,7 +81,16 @@ export class HomePage {
 				this._user.set_storage()
 
 				if(this.userSession.RolesId == 7){
-					this.navCtrl.setRoot(this.TiposEquipos)
+					this.http.get(this._user.url + '/cargasdiesel/getprecio')
+						.subscribe(response => {
+							this.precioDiesel = response
+							if(this.precioDiesel != null){
+								this.navCtrl.setRoot(this.TiposEquipos)
+							}else{
+								this.navCtrl.setRoot(this.PrecioDieselPage)
+							}
+						})
+
 				}else{
 					if(this.userSession.RolesId == 4){
 						this.navCtrl.setRoot(this.Operador)

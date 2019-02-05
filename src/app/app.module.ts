@@ -21,6 +21,7 @@ import { ListPage } from '../pages/list/list';
 import { MainPage } from '../pages/main/main';
 import { MyApp } from './app.component';
 import { OperadorPage } from '../pages/operador/operador';
+import { PrecioDieselPage } from '../pages/precio-diesel/precio-diesel';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { StorageServiceProvider } from '../providers/storage-service/storage-service';
@@ -53,6 +54,7 @@ import { IonicStorageModule } from '@ionic/storage';
 		MainPage,
 		MyApp,
 		OperadorPage,
+		PrecioDieselPage,
 		TabsPage,
 		TiposEquiposPage,
 		VerCargasCombustiblePage,
@@ -84,6 +86,7 @@ import { IonicStorageModule } from '@ionic/storage';
 		MainPage,
 		MyApp,
 		OperadorPage,
+		PrecioDieselPage,
 		TabsPage,
 		TiposEquiposPage,
 		VerCargasCombustiblePage,
