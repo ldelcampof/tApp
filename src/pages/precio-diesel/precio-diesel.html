@@ -1,0 +1,30 @@
+<!--
+  Generated template for the PrecioDieselPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>PrecioDiesel</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+	<form (ngSubmit)="sendData()">
+		<ion-list>
+			<ion-item>
+				<ion-label stacked>Fecha</ion-label>
+				<ion-input type="date" readonly [(ngModel)]="precio.fecha" [ngModelOptions]="{standalone: true}"></ion-input>
+			</ion-item>
+			<ion-item>
+				<ion-label stacked>Precio</ion-label>
+				<ion-input type="number" [(ngModel)]="precio.precio" name="precio"></ion-input>
+			</ion-item>
+		</ion-list>
+		<button ion-button full color="danger" type="submit">Guardar</button>
+	</form>
+</ion-content>
