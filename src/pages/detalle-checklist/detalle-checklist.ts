@@ -22,8 +22,15 @@ export class DetalleChecklistPage {
 			private http: HttpClient, private _user: StorageServiceProvider,
 			public loadingCtrl: LoadingController,
 			public alertCtrl: AlertController) {
+  		let url = ''
+  		console.log(navParams.data)
+  	if(navParams.data.Id != undefined){
+  		url = this._user.url + '/checklist/GetDetail/' + this.navParams.data.Id
+  	}else{
+  		url = this._user.url + '/checklist/GetDetailBP/' + this.navParams.data.id
+  	}
 
-  	this.http.get( this._user.url + '/checklist/GetDetail/' + navParams.data.Id)
+  	this.http.get(url)
 			.subscribe(response => {
 				this.respuestas = response
 				this.loading.dismiss()

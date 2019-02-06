@@ -19,16 +19,16 @@
 			<h2>No hay nada para mostrar</h2>
 		</ion-item>
 		<ion-item *ngFor="let checklist of checklists">
-		    <h2 *ngIf="equipo.tipoVehiculo == 'CAMIÓN REVOLVEDOR' || equipo.tipoVehiculo == 'BOMBA PLUMA'">Folio {{ checklist.reporteId }} - {{ checklist.nombreCorto }}</h2>
+		    <h2 *ngIf="equipo.tipoVehiculo == 'CAMIÓN REVOLVEDOR'">Folio {{ checklist.reporteId }} - {{ checklist.nombreCorto }}</h2>
+		    <h2 *ngIf="equipo.tipoVehiculo == 'BOMBA PLUMA'">Folio {{ checklist.id }} </h2>
 		    <h2 *ngIf="equipo.tipoVehiculo != 'CAMIÓN REVOLVEDOR' && equipo.tipoVehiculo != 'BOMBA PLUMA'">Folio {{ checklist.Id }}</h2>
 		    <p *ngIf="checklist.firmaJefePlanta == null">Firma Jefe de Planta: Pendiente</p>
 		    <p *ngIf="checklist.firmaJefePlanta != null">Firma Jefe de Planta: Correcto</p>
 		    <p *ngIf="checklist.firmaMantenimiento == null">Firma Mantenimiento: Pendiente</p>
 		    <p *ngIf="checklist.firmaMantenimiento != null">Firma Mantenimiento: Correcto</p>
 		    <p>Creado: {{ checklist.createdAt }}</p>
-		    <button ion-button clear item-end *ngIf="checklist.tipo != 'CR' && checklist.tipo != 'BP'" [navPush]="detailChecklist" [navParams]="checklist">Ver</button>
+		    <button ion-button clear item-end *ngIf="checklist.tipo != 'CR'" [navPush]="detailChecklist" [navParams]="checklist">Ver2</button>
 		    <button ion-button clear item-end *ngIf="checklist.tipo == 'CR'" [navPush]="detailChecklistCr" [navParams]="{checklist: checklist}">Ver</button>
-		    <button ion-button clear item-end *ngIf="checklist.tipo == 'BP'" [navPush]="detailChecklistBp" [navParams]="{checklist: checklist}">Ver</button>
 		    <!-- <button ion-button clear item-end *ngIf="checklist.tipo == 'BP'" [navPush]="pushPage" [navParams]="params">Ver</button> -->
 		</ion-item>
 	</ion-list>

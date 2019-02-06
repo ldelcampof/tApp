@@ -18,8 +18,12 @@ import { Platform } from 'ionic-angular';
 export class GeneralChecklistPage {
 	ElementosChecklistId:any
 	respuestas:any = []
+	checklist:any = {}
 	storage:any = {}
 	session:any = {}
+	horometro:any = ''
+	kilometraje:any = ''
+	mantenimiento:any = ''
 	user:any = {}
 	tipoEquipo:any = {}
 	newResponse:any
@@ -35,6 +39,14 @@ export class GeneralChecklistPage {
 		private http: HttpClient) {
 
 		this._user.getStorage()
+
+		if(this.platform.is('cordova')){
+			this.session = JSON.parse(this._user.session)
+			this.user = JSON.parse(this.session.user)
+		}else{
+			this.user = JSON.parse(this._user.session.user)
+		}
+
 		this.storage = this._user
 		this.loading.dismiss()
 
@@ -42,6 +54,55 @@ export class GeneralChecklistPage {
 			.subscribe(response => {
 				this.exists = response
 				if(this.exists.length == 0){
+					if(this.navParams.data.TiposEquipos_Id == 2){
+						this.http.get(this._user.url + '/api/apiequipos/' + this.navParams.data.id)
+							.subscribe(response => {
+								this.checklist = response
+								this.horometro = this.checklist.HorometrosKilometrajes[0].ultimoHorometro
+								this.kilometraje = this.checklist.HorometrosKilometrajes[0].ultimoKilometraje
+								this.mantenimiento = {
+						            equiposId: this.user.equipo.id,
+									nivelCombustible: 0,
+									operadorId: this.user.Id,
+									horometroInicial: 0,
+									kilometrajeInicial: 0,
+						            cargaDiesel: 0,
+						            controlTeleMando: "CONFORME",
+						            estadoSegurosEstabilizadores: "CONFORME",
+						            paroEmergencia: "CONFORME",
+						            iluminacionPluma: "CONFORME",
+						            estadoAbrazaderas: "CONFORME",
+						            nivelEstabilizadores: "CONFORME",
+						            funcionamientoLubricador: "CONFORME",
+						            lubricacionElementos: "CONFORME",
+						            limpiezaTolva: "CONFORME",
+						            limpiezaCabina: "CONFORME",
+						            engrasado: "CONFORME",
+						            funcionamientoAlarma: "CONFORME",
+						            funcionamientoFrenos: "CONFORME",
+						            espejosCompletos: "CONFORME",
+						            funcionamientoBateria: "CONFORME",
+						            estadoParabrisas: "CONFORME",
+						            nivelAceiteHidraulico: "CONFORME",
+						            nivelAceiteReductor: "CONFORME",
+						            nivelAceiteMotor: "CONFORME",
+						            nivelRefrigerante: "CONFORME",
+						            condicionLuces: "CONFORME",
+						            consumoCombustible: "CONFORME",
+						            consumoAceiteMotor: "CONFORME",
+						            consumoAceiteHidraulico: "CONFORME",
+						            consumoAceiteTransmision: "CONFORME",
+						            consumoRefrigerante: "CONFORME",
+						            observaciones: "",
+						        }
+
+
+								this.loading.dismiss()
+							}, error => {
+								this.loading.dismiss()
+								this.showAlert(error.error)
+							})
+					}
 			  		this.http.get(this.storage.url + '/equipos/getequipo/' + this.navParams.data.id)
 						.subscribe(response => {
 							this.newResponse = response
@@ -77,6 +138,8 @@ export class GeneralChecklistPage {
 			this.showAlert('No se han respondido todas las preguntas')
         }else{
             data.append('respuestas', JSON.stringify(this.respuestas))
+            data.append('mantenimiento', JSON.stringify(this.mantenimiento))
+            data.append('tipoEquipo', JSON.stringify(this.navParams.data.TiposEquipos_Id))
             this.http.post(this._user.url + '/checklist/poststore/' + this.navParams.data.id, data)
                 .subscribe(response => {
 					this.loading.dismiss();

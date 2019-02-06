@@ -15,6 +15,14 @@
 
 <ion-content padding>
 	<ion-list>
+		<ion-item *ngIf="navParams.data.Id == undefined">
+			<p stacked>Horómetro</p>
+			<p>{{ navParams.data.horometroInicial }}</p>
+		</ion-item>
+		<ion-item *ngIf="navParams.data.Id == undefined">
+			<p stacked>Kilometraje</p>
+			<p>{{ navParams.data.kilometrajeInicial }}</p>
+		</ion-item>
 		<ion-item *ngFor="let respuesta of respuestas;let i = index">
 			<p *ngIf="respuesta.elemento" stacked>{{ respuesta.elemento.nombre }}</p>
 			<p>{{ respuesta.respuesta }}</p>

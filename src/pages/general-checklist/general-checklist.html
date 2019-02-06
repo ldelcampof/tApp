@@ -16,6 +16,26 @@
 <ion-content padding>
 	<form (ngSubmit)="sendData()">
 		<ion-list>
+			<ion-item  *ngIf="navParams.data.TiposEquipos_Id == 2">
+				<ion-label stacked>Último Horómetro</ion-label>
+				<ion-input type="number" readonly [(ngModel)]="horometro" name="horometroInicial"></ion-input>
+			</ion-item>
+
+			<ion-item  *ngIf="navParams.data.TiposEquipos_Id == 2">
+				<ion-label stacked>Horómetro actual</ion-label>
+				<ion-input type="number" [(ngModel)]="mantenimiento.horometroInicial" name="ultimoHorometro"></ion-input>
+			</ion-item>
+
+			<ion-item  *ngIf="navParams.data.TiposEquipos_Id == 2">
+				<ion-label stacked>Último Kilometraje</ion-label>
+				<ion-input type="number" readonly [(ngModel)]="kilometraje" name="kilometrajeInicial"></ion-input>
+			</ion-item>
+
+			<ion-item  *ngIf="navParams.data.TiposEquipos_Id == 2">
+				<ion-label stacked>Kilometraje actual</ion-label>
+				<ion-input type="number" [(ngModel)]="mantenimiento.kilometrajeInicial" name="kilometrajeActual"></ion-input>
+			</ion-item>
+
 			<div *ngFor="let respuesta of tipoEquipo.elementos;let i = index">
 				<ion-list radio-group [(ngModel)]="respuestas[i].respuesta" [ngModelOptions]="{standalone: true}">
 					<ion-label *ngIf="respuesta.elemento" stacked>{{ respuesta.elemento.nombre }}</ion-label>

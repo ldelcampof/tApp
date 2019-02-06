@@ -51,7 +51,7 @@ export class ViewChecklistPage {
 	getChecklist(equipo:any){
 		this.loading.present()
 		var url = ''
-		if(equipo.tipoVehiculo == 'BOMBA PLUMA' || equipo.tipoVehiculo == 'CAMIÓN REVOLVEDOR'){
+		if(equipo.tipoVehiculo == 'CAMIÓN REVOLVEDOR'){
 			url = '/reportesoperador/equipo/'
 		}else{
 			url = '/checklist/GetChecklists/'
@@ -62,6 +62,9 @@ export class ViewChecklistPage {
 				this.checklists = response
 				for(let i = 0; this.checklists.length > i; i++){
 					this.checklists[i].createdAt = moment(this.checklists[i].createdAt).format('DD/MM/YYYY')
+					if(this.equipo.tipoVehiculo == 'BOMBA PLUMA'){
+						this.checklists[i].tipo = 'BP'
+					}
 				}
 				this.loading.dismiss();
 			}, error => {
