@@ -107,18 +107,22 @@ export class GeneralChecklistPage {
 						.subscribe(response => {
 							this.newResponse = response
 							this.tipoEquipo = this.newResponse[0].TiposEquipos
-							for(let i = 0; this.tipoEquipo.elementos.length > i; i++){
-			                    let opcion = {
-			                        ElementosChecklistId: this.tipoEquipo.elementos[i].elemento.Id,
-			                        EquipoId: this.navParams.data.id
-			                    }
-			                    this.respuestas.push(opcion)
-			                }
+
+							if(this.tipoEquipo.elementos.length < 0){
+								for(let i = 0; this.tipoEquipo.elementos.length > i; i++){
+				                    let opcion = {
+				                        ElementosChecklistId: this.tipoEquipo.elementos[i].elemento.Id,
+				                        EquipoId: this.navParams.data.id
+				                    }
+				                    this.respuestas.push(opcion)
+				                }
+				            }else{
+								this.showAlert('El equipo no tiene elementos para checklist')
+				            }
 						})
 				}else{
 					this.loading.dismiss()
 					this.showAlert('Ya fue dado un checklist el dia de hoy')
-					this.navCtrl.pop()
 				}
 		})
   	}
@@ -132,23 +136,39 @@ export class GeneralChecklistPage {
 		this.loading = this.loadingCtrl.create({ content: 'Cargando...' })
 
 		this.loading.present();
-
-		if(this.respuestas.length != this.tipoEquipo.elementos.length){
+		let count = 0;
+		for(let i = 0; this.respuestas.length > i; i++){
+			if(this.respuestas[i].respuesta != undefined){
+				count++;
+			}
+		}
+		if(this.horometro > this.mantenimiento.horometroInicial){
 			this.loading.dismiss();
-			this.showAlert('No se han respondido todas las preguntas')
-        }else{
-            data.append('respuestas', JSON.stringify(this.respuestas))
-            data.append('mantenimiento', JSON.stringify(this.mantenimiento))
-            data.append('tipoEquipo', JSON.stringify(this.navParams.data.TiposEquipos_Id))
-            this.http.post(this._user.url + '/checklist/poststore/' + this.navParams.data.id, data)
-                .subscribe(response => {
+			this.showAlert('El horometro no puede ser menor que el inicial')
+		}else{
+			if(this.kilometraje > this.mantenimiento.kilometrajeInicial){
+				this.loading.dismiss();
+				this.showAlert('El kilometraje no puede ser menor que el inicial')
+			}else{
+
+				if(count != this.tipoEquipo.elementos.length){
 					this.loading.dismiss();
-					this.showAlert('Registro guardado')
-				},error => {
-					this.loading.dismiss()
-					this.showAlert(error.error)
-				})
-        }
+					this.showAlert('No se han respondido todas las preguntas')
+		        }else{
+		            data.append('respuestas', JSON.stringify(this.respuestas))
+		            data.append('mantenimiento', JSON.stringify(this.mantenimiento))
+		            data.append('tipoEquipo', JSON.stringify(this.navParams.data.TiposEquipos_Id))
+		            this.http.post(this._user.url + '/checklist/poststore/' + this.navParams.data.id, data)
+		                .subscribe(response => {
+							this.loading.dismiss();
+							this.showAlert('Registro guardado')
+						},error => {
+							this.loading.dismiss()
+							this.showAlert(error.error)
+						})
+		        }
+		    }
+	    }
 	}
 	showAlert(message) {
 		const alert = this.alertCtrl.create({
@@ -157,7 +177,7 @@ export class GeneralChecklistPage {
 				{
 					text: 'Ok',
 					handler: () => {
-						if(message == 'Registro guardado')
+						if(message == 'Registro guardado' || message == 'Ya fue dado un checklist el dia de hoy' || message == 'El equipo no tiene elementos para checklist')
 							this.navCtrl.pop();
 					}
 				},

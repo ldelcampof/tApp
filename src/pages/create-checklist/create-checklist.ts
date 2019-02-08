@@ -61,44 +61,44 @@ export class CreateChecklistPage {
 			operadorId: this.user.Id,
 			horometroInicial: 0,
 			kilometrajeInicial: 0,
-			purgarTanqueAire: 'CONFORME',
-			valvulaReguladora: 'CONFORME',
-			nivelAceiteMotor: 'CONFORME',
-			nivelRefrigerante: 'CONFORME',
-			nivelLiquidoLavaParabrisas: 'CONFORME',
-			nivelRestriccionFiltroAire: 'CONFORME',
-			nivelAceiteHidraulico: 'CONFORME',
-			nivelReductorOlla: 'CONFORME',
-			nivelBombaSustraOlla: 'CONFORME',
-			embargueCambioVelocidades: 'CONFORME',
-			acelerador: 'CONFORME',
-			presionAceite: 'CONFORME',
-			alarmaPresionAire: 'CONFORME',
-			bandas: 'CONFORME',
-			limpiezaCabina: 'CONFORME',
-			limpiezaOllaInterior: 'CONFORME',
-			limpiezaOllaExterior: 'CONFORME',
-			engrasado: 'CONFORME',
-			funcionamientoAlarmaReversa: 'CONFORME',
-			funcionamientoFrenos: 'CONFORME',
-			espejosCompletos: 'CONFORME',
-			funcionamientoEstadoBateria: 'CONFORME',
-			estadoParabrisasVidrios: 'CONFORME',
-			condicionLuces: 'CONFORME',
-			limpiaparabrisas: 'CONFORME',
-			funcionamientoAireAcondicionado: 'CONFORME',
-			cinturonSeguridad: 'CONFORME',
-			funcionamientoBocina: 'CONFORME',
-			asientos: 'CONFORME',
-			lenguetaSella: 'CONFORME',
-			neumaticos: 'CONFORME',
-			condicionTanqueCombustible: 'CONFORME',
-			fugasAceite: 'CONFORME',
-			consumoCombustible: 'CONFORME',
-			consumoAceiteMotor: 'CONFORME',
-			consumoAceiteHidraulico: 'CONFORME',
-			consumoAceiteTransmision: 'CONFORME',
-			consumoRefrigerante: 'CONFORME',
+			purgarTanqueAire: '',
+			valvulaReguladora: '',
+			nivelAceiteMotor: '',
+			nivelRefrigerante: '',
+			nivelLiquidoLavaParabrisas: '',
+			nivelRestriccionFiltroAire: '',
+			nivelAceiteHidraulico: '',
+			nivelReductorOlla: '',
+			nivelBombaSustraOlla: '',
+			embargueCambioVelocidades: '',
+			acelerador: '',
+			presionAceite: '',
+			alarmaPresionAire: '',
+			bandas: '',
+			limpiezaCabina: '',
+			limpiezaOllaInterior: '',
+			limpiezaOllaExterior: '',
+			engrasado: '',
+			funcionamientoAlarmaReversa: '',
+			funcionamientoFrenos: '',
+			espejosCompletos: '',
+			funcionamientoEstadoBateria: '',
+			estadoParabrisasVidrios: '',
+			condicionLuces: '',
+			limpiaparabrisas: '',
+			funcionamientoAireAcondicionado: '',
+			cinturonSeguridad: '',
+			funcionamientoBocina: '',
+			asientos: '',
+			lenguetaSella: '',
+			neumaticos: '',
+			condicionTanqueCombustible: '',
+			fugasAceite: '',
+			consumoCombustible: '',
+			consumoAceiteMotor: '',
+			consumoAceiteHidraulico: '',
+			consumoAceiteTransmision: '',
+			consumoRefrigerante: '',
 			observaciones: ''
 		}
 	}
@@ -106,6 +106,7 @@ export class CreateChecklistPage {
 	sendData(){
 		var data = new FormData()
 		let success = true
+		let valid = true
 
 		if(this.horometro >= this.mantenimiento.horometroInicial){
 			this.showAlert('El horometro no puede ser menor que el anterior')
@@ -114,6 +115,15 @@ export class CreateChecklistPage {
 		if(this.kilometraje >= this.mantenimiento.kilometrajeInicial){
 			this.showAlert('El kilometraje no puede ser menor que el anterior')
 			success = false
+		}
+		for(var answer in this.mantenimiento){
+			if(answer == ''){
+				valid = false
+			}
+		}
+
+		if(!valid){
+			this.showAlert('No se han contestado todas las preguntas')
 		}
 
 		if(success){
