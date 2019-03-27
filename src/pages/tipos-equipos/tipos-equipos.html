@@ -6,13 +6,17 @@
 -->
 <ion-header>
 	<ion-navbar>
-		<ion-title *ngIf="user.RolesId == 7">Encargado de Marimba</ion-title>
-		<ion-title *ngIf="user.RolesId == 1">Administrador</ion-title>
+		<ion-title>Administrador</ion-title>
 	</ion-navbar>
 </ion-header>
 
 
 <ion-content padding>
+
+	<ion-fab bottom right>
+		<button ion-fab [navPush]="CargarCombustible"><ion-icon name="add"></ion-icon></button>
+	</ion-fab>
+
 	<button *ngFor="let tipo of tiposEquipo" margin-bottom large ion-button full color="danger" [navPush]="EquiposPage" [navParams]="tipo">{{ tipo.tipoEquipo }}</button>
 
 	<button ion-button full (click)="salir()" margin-top small>Salir</button>

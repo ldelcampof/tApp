@@ -108,7 +108,7 @@ export class GeneralChecklistPage {
 							this.newResponse = response
 							this.tipoEquipo = this.newResponse[0].TiposEquipos
 
-							if(this.tipoEquipo.elementos.length < 0){
+							if(this.tipoEquipo.elementos.length > 0){
 								for(let i = 0; this.tipoEquipo.elementos.length > i; i++){
 				                    let opcion = {
 				                        ElementosChecklistId: this.tipoEquipo.elementos[i].elemento.Id,

@@ -17,23 +17,29 @@
 	<form (ngSubmit)="sendData()">
 		<ion-list>
 			<ion-item>
-				<ion-label stacked>Nombre corto</ion-label>
-				<ion-label>{{ checklist.nombreCorto }}</ion-label>
+				<ion-label stacked>División</ion-label>
+				<ion-select interface="popover" [(ngModel)]="carga.division" [ngModelOptions]="{standalone: true}" (ionChange)="selectClasification()">
+					<ion-option *ngFor="let elemento of division" value="{{ elemento.Id }}">{{ elemento.tipoEquipo }}</ion-option>
+				</ion-select>
 			</ion-item>
 			<ion-item>
-				<ion-label stacked>Último Horómetro</ion-label>
-				<ion-input type="text" readonly [(ngModel)]="ultimoHorometro" [ngModelOptions]="{standalone: true}"></ion-input>
+				<ion-label stacked>Clasificación</ion-label>
+				<ion-select interface="popover" [(ngModel)]="carga.clasificacion" [ngModelOptions]="{standalone: true}" (ionChange)="selectEquipment()">
+					<ion-option *ngFor="let elemento of clasificacion" value="{{ elemento.tipoEquipo }}">{{ elemento.tipoEquipo }}</ion-option>
+				</ion-select>
 			</ion-item>
 			<ion-item>
-				<ion-label stacked>Último Kilometraje</ion-label>
-				<ion-input type="text" readonly [(ngModel)]="ultimoKilometraje" [ngModelOptions]="{standalone: true}"></ion-input>
+				<ion-label stacked>Equipo</ion-label>
+				<ion-select interface="popover" [(ngModel)]="carga.equiposId" [ngModelOptions]="{standalone: true}">
+					<ion-option *ngFor="let elemento of equipos" value="{{ elemento.id }}">{{ elemento.nombreCorto }}</ion-option>
+				</ion-select>
 			</ion-item>
 			<ion-item>
-				<ion-label stacked>Horómetro actual</ion-label>
+				<ion-label stacked>Horómetro</ion-label>
 				<ion-input type="number" [(ngModel)]="carga.nuevoHorometro" name="nuevoHorometro"></ion-input>
 			</ion-item>
 			<ion-item>
-				<ion-label stacked>Kilometraje actual</ion-label>
+				<ion-label stacked>Kilometraje</ion-label>
 				<ion-input type="number" [(ngModel)]="carga.nuevoKilometraje" name="nuevoKilometraje"></ion-input>
 			</ion-item>
 			<ion-item>

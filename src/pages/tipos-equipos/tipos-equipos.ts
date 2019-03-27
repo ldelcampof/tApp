@@ -4,6 +4,7 @@ import { StorageServiceProvider } from "../../providers/storage-service/storage-
 import { HttpClient } from '@angular/common/http';
 import { Platform } from 'ionic-angular';
 
+import { CargarCombustiblePage } from "../cargar-combustible/cargar-combustible"
 import { EquiposPage } from "../equipos/equipos";
 import { HomePage } from "../home/home";
 
@@ -21,6 +22,7 @@ import { HomePage } from "../home/home";
   templateUrl: 'tipos-equipos.html',
 })
 export class TiposEquiposPage {
+	CargarCombustible = CargarCombustiblePage
 	EquiposPage = EquiposPage
 	Login = HomePage
 

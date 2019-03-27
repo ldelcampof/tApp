@@ -19,6 +19,7 @@ import { HomePage } from '../pages/home/home';
 import { HttpClientModule } from '@angular/common/http';
 import { ListPage } from '../pages/list/list';
 import { MainPage } from '../pages/main/main';
+import { MarimbaPage } from '../pages/marimba/marimba';
 import { MyApp } from './app.component';
 import { OperadorPage } from '../pages/operador/operador';
 import { PrecioDieselPage } from '../pages/precio-diesel/precio-diesel';
@@ -29,7 +30,8 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { TiposEquiposPage } from "../pages/tipos-equipos/tipos-equipos";
 import { VerCargasCombustiblePage } from '../pages/ver-cargas-combustible/ver-cargas-combustible';
 import { ViewChecklistPage } from '../pages/view-checklist/view-checklist';
-
+import * as moment from 'moment';
+moment.locale('es-us');
 // plugins
 import { IonicStorageModule } from '@ionic/storage';
 
@@ -52,6 +54,7 @@ import { IonicStorageModule } from '@ionic/storage';
 		HomePage,
 		ListPage,
 		MainPage,
+		MarimbaPage,
 		MyApp,
 		OperadorPage,
 		PrecioDieselPage,
@@ -84,6 +87,7 @@ import { IonicStorageModule } from '@ionic/storage';
 		HomePage,
 		ListPage,
 		MainPage,
+		MarimbaPage,
 		MyApp,
 		OperadorPage,
 		PrecioDieselPage,

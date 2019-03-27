@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { TiposEquiposPage } from "../tipos-equipos/tipos-equipos";
 import { OperadorPage } from "../operador/operador";
 import { PrecioDieselPage } from "../precio-diesel/precio-diesel";
+import { MarimbaPage } from '../marimba/marimba';
 import { TabsPage } from "../tabs/tabs";
 
 import { StorageServiceProvider } from "../../providers/storage-service/storage-service";
@@ -20,6 +21,7 @@ export class HomePage {
 	tabsPage = TabsPage
 	TiposEquipos = TiposEquiposPage
 	PrecioDieselPage = PrecioDieselPage
+	Marimba = MarimbaPage
 	Operador = OperadorPage
 	userSession:any = {}
 	precioDiesel:any = 0
@@ -49,7 +51,7 @@ export class HomePage {
 						.subscribe(response => {
 							this.precioDiesel = response
 							if(this.precioDiesel != null){
-								this.navCtrl.setRoot(this.TiposEquipos)
+								this.navCtrl.setRoot(this.Marimba)
 							}else{
 								this.navCtrl.setRoot(this.PrecioDieselPage)
 							}
@@ -85,7 +87,7 @@ export class HomePage {
 						.subscribe(response => {
 							this.precioDiesel = response
 							if(this.precioDiesel != null){
-								this.navCtrl.setRoot(this.TiposEquipos)
+								this.navCtrl.setRoot(this.Marimba)
 							}else{
 								this.navCtrl.setRoot(this.PrecioDieselPage)
 							}
