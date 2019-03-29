@@ -74,7 +74,6 @@ export class CargarCombustiblePage {
 
   	sendData(){
   		var data = new FormData()
-		let success = true
 		let fecha = this.carga.fechaCarga.split('-');
 
 		this.carga.fechaCarga = fecha[2] +'/'+fecha[1]+'/'+fecha[0]
