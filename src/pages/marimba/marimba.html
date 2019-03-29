@@ -1,0 +1,30 @@
+<!--
+  Generated template for the AccionesPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+	<ion-navbar>
+		<ion-title>Encargado de Marimba</ion-title>
+	</ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+
+	<ion-fab bottom right>
+		<button ion-fab [navPush]="CargarCombustible"><ion-icon name="add"></ion-icon></button>
+	</ion-fab>
+	<h2>Cargas de {{ date }}</h2>
+	<h4 *ngIf="cargasdiesel.length == 0">No existen cargas aún</h4>
+	<ion-list  *ngIf="cargasdiesel.length > 0">
+		<ion-item *ngFor="let cargas of cargasdiesel">
+			<h2>{{ cargas.EquiposCargasDiesel.nombreCorto }}</h2>
+			<p>Carga: {{ cargas.diesel }} Litros</p>
+		</ion-item>
+	</ion-list>
+
+	<button ion-button full (click)="salir()" margin-top small>Salir</button>
+
+</ion-content>
