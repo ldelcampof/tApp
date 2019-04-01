@@ -14,7 +14,7 @@
 <ion-content padding>
 
 	<ion-fab bottom right>
-		<button ion-fab [navPush]="CargarCombustible"><ion-icon name="add"></ion-icon></button>
+		<button ion-fab (click)="goCargarCombustible()"><ion-icon name="add"></ion-icon></button>
 	</ion-fab>
 	<h2>Cargas de {{ date }}</h2>
 	<h4 *ngIf="cargasdiesel.length == 0">No existen cargas aún</h4>

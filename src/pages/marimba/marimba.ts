@@ -53,18 +53,36 @@ export class MarimbaPage {
 			this.user = JSON.parse(this.storage.session.user)
 		}
 
-		let data = new FormData()
+		this.getCharges()
+  	}
+
+  	getCharges(){
+  		let data = new FormData()
 		data.append('fechaInicio', moment().format('YYYY/MM/DD'))
 		data.append('fechaFin', moment().format('YYYY/MM/DD'))
 
-  		this.http.post(this.storage.url + 'cargasdiesel/buscafecha', data)
+  		this.http.post(this.storage.url + '/cargasdiesel/buscafecha', data)
 			.subscribe(response => {
 				this.cargasdiesel = response
 			})
   	}
+
+  	goCargarCombustible(){
+  		this.navCtrl.push(this.CargarCombustible, { callback: this.myCallbackFunction })
+  	}
+
   	salir(){
 		this.showConfirm()
 	}
+
+  	myCallbackFunction = (_params) => {
+  		if(_params == 'Si'){
+  			this.getCharges()
+  		}
+     	return new Promise((resolve, reject) => {
+            resolve();
+        });
+ 	}
 
 	showConfirm() {
 		const confirm = this.alertCtrl.create({
@@ -74,7 +92,7 @@ export class MarimbaPage {
 				{
 					text: 'No',
 					handler: () => {
-						console.log('Disagree clicked');
+
 					}
 				},
 				{
@@ -83,10 +101,9 @@ export class MarimbaPage {
 						this.storage.clean()
 
 						this.app.getRootNav().setRoot(this.Login).then(data => {
-							console.log('Going home')
-						      console.log(data);
+
 						  }, (error) => {
-						      console.log(error);
+
 						  })
 					}
 				}

@@ -18,6 +18,7 @@ import moment from 'moment';
 })
 export class CargarCombustiblePage {
 
+	callback:any = {}
 	carga:any = {}
 	checklist:any = {}
 	elementos:any = []
@@ -134,6 +135,7 @@ export class CargarCombustiblePage {
 		this.loading.present();
 
 		data.append('equipo', JSON.stringify(this.carga))
+
 		this.http.post(this._user.url + '/equipos/PostCargarDiesel/' + this.carga.equiposId, data)
 			.subscribe(response => {
 				this.loading.dismiss();
@@ -151,8 +153,13 @@ export class CargarCombustiblePage {
 				{
 					text: 'Ok',
 					handler: () => {
-						if(message == 'Registro guardado')
-							this.navCtrl.pop();
+						if(message == 'Registro guardado'){
+							this.callback = this.navParams.get("callback")
+							let param = 'Si'
+							this.callback(param).then(()=>{
+							    this.navCtrl.pop();
+							});
+						}
 					}
 				},
 			]
