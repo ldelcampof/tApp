@@ -59,14 +59,18 @@ export class CargarCombustiblePage {
   	}
 
   	selectClasification(){
+  		this.equipos = []
+  		this.clasificacion = []
+
   		for(let i=0; this.elementos.length > i; i++){
 			if(this.elementos[i].padre == this.carga.division){
 				this.clasificacion.push(this.elementos[i])
 			}
 		}
   	}
+
   	selectEquipment(){
-  		this.http.get(this._user.url + 'equipos/tipoequipo/' + this.carga.clasificacion)
+  		this.http.get(this._user.url + '/equipos/tipoequipo/' + this.carga.clasificacion)
   			.subscribe(response => {
   				this.equipos = response
   			})

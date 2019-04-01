@@ -3,7 +3,7 @@ import { NavController, NavParams, LoadingController, AlertController } from 'io
 import { HttpClient } from '@angular/common/http';
 import { StorageServiceProvider } from "../../providers/storage-service/storage-service";
 import { Platform } from 'ionic-angular';
-import { TiposEquiposPage } from "../tipos-equipos/tipos-equipos";
+import { MarimbaPage } from "../marimba/marimba";
 import moment from 'moment';
 /**
  * Generated class for the PrecioDieselPage page.
@@ -19,7 +19,7 @@ import moment from 'moment';
 export class PrecioDieselPage {
 	precio:any = {}
 	loading:any = this.loadingCtrl.create({ content: 'Cargando...' })
-	TiposEquipos = TiposEquiposPage
+	Marimba = MarimbaPage
 
   	constructor(public navCtrl: NavController, private http: HttpClient, public navParams: NavParams, private _user: StorageServiceProvider, public loadingCtrl: LoadingController, public alertCtrl: AlertController, public platform: Platform) {
 		this.precio.fecha = moment().format('YYYY-MM-DD')
@@ -41,7 +41,7 @@ export class PrecioDieselPage {
 			.subscribe(response => {
 				this.loading.dismiss();
 				this.showAlert('Registro guardado')
-				this.navCtrl.setRoot(this.TiposEquipos)
+				this.navCtrl.setRoot(this.Marimba)
 			},error => {
 				this.loading.dismiss()
 				this.showAlert(error.error)
