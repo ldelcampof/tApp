@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
 import { StorageServiceProvider } from "../../providers/storage-service/storage-service";
+import { Storage } from '@ionic/storage';
 import { Platform } from 'ionic-angular';
 import moment from 'moment';
 /**
@@ -30,7 +31,7 @@ export class CargarCombustiblePage {
 	user:any = {}
 
   	constructor(public navCtrl: NavController, private http: HttpClient,
-  		public navParams: NavParams, private _user: StorageServiceProvider,
+  		public navParams: NavParams, private _user: StorageServiceProvider, private storage: Storage,
 			public loadingCtrl: LoadingController, public alertCtrl: AlertController,
 			public platform: Platform) {
 
@@ -55,12 +56,49 @@ export class CargarCombustiblePage {
 					}
 				}
 
+				if(this.platform.is('cordova')){
+					// Dispositivo
+					this.storage.get('division').then((val) => {
+					    this.carga.division = val
+					});
+
+					this.getData()
+				}else{
+					// Escritorio
+					if(localStorage.getItem('division')){
+						this.carga.division = localStorage.getItem("division")
+					}
+					this.getData()
+				}
+
 			})
+
+
+  	}
+
+  	getData(){
+  		if(this.platform.is('cordova')){
+			this.storage.get('clasificacion').then((val) => {
+			    this.carga.clasificacion = val
+			});
+  		}else{
+  			this.carga.clasificacion = localStorage.getItem("clasificacion")
+  		}
+
+		this.selectClasification()
+		this.selectEquipment()
   	}
 
   	selectClasification(){
+
   		this.equipos = []
   		this.clasificacion = []
+
+		if(this.platform.is('cordova')){
+  			this.storage.set('division', this.carga.division)
+  		}else{
+  			localStorage.setItem('division', this.carga.division)
+  		}
 
   		for(let i=0; this.elementos.length > i; i++){
 			if(this.elementos[i].padre == this.carga.division){
@@ -70,6 +108,12 @@ export class CargarCombustiblePage {
   	}
 
   	selectEquipment(){
+		if(this.platform.is('cordova')){
+  			this.storage.set('clasificacion', this.carga.clasificacion)
+  		}else{
+  			localStorage.setItem('clasificacion', this.carga.clasificacion)
+  		}
+
   		this.http.get(this._user.url + '/equipos/tipoequipo/' + this.carga.clasificacion)
   			.subscribe(response => {
   				this.equipos = response
