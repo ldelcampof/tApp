@@ -61,9 +61,9 @@ export class CargarCombustiblePage {
 					// Dispositivo
 					this.storage.get('division').then((val) => {
 					    this.carga.division = val
+						this.getData()
 					});
 
-					this.getData()
 				}else{
 					// Escritorio
 					if(localStorage.getItem('division')){
@@ -78,23 +78,25 @@ export class CargarCombustiblePage {
   	}
 
   	getData(){
+  		this.clasificacion = []
+		this.selectClasification()
+
   		if(this.platform.is('cordova')){
 			this.storage.get('clasificacion').then((val) => {
 			    this.carga.clasificacion = val
+				this.selectEquipment()
 			});
   		}else{
   			this.carga.clasificacion = localStorage.getItem("clasificacion")
   		}
 
-		this.selectClasification()
 		this.selectEquipment()
+
   	}
 
   	selectClasification(){
 
   		this.equipos = []
-  		this.clasificacion = []
-
 		if(this.platform.is('cordova')){
   			this.storage.set('division', this.carga.division)
   		}else{
